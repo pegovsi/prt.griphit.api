@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Prt.Graphit.Domain.AggregatesModel.Sku.Entities
 {
-    public class SkuType : Entity, IAggregateRoot
+    public class SkuType : Entity
     {
         protected SkuType() { }
 
@@ -15,6 +15,14 @@ namespace Prt.Graphit.Domain.AggregatesModel.Sku.Entities
                 throw new ArgumentNullException($"Незаполнено обязательное поле {nameof(name)}");
 
             Id = Guid.NewGuid();
+            Name = name;
+        }
+        public SkuType(Guid id, string name) : this()
+        {
+            if (string.IsNullOrEmpty(name))
+                throw new ArgumentNullException($"Незаполнено обязательное поле {nameof(name)}");
+
+            Id = id;
             Name = name;
         }
 

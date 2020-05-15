@@ -3,7 +3,7 @@ using System;
 
 namespace Prt.Graphit.Domain.AggregatesModel.Sku.Entities
 {
-    public class SkuGroup : Entity, IAggregateRoot
+    public class SkuGroup : Entity
     {
         protected SkuGroup() { }
 
@@ -15,7 +15,7 @@ namespace Prt.Graphit.Domain.AggregatesModel.Sku.Entities
             Id = Guid.NewGuid();
             Name = name;
         }
-        public SkuGroup(string name, Guid parentId) : this()
+        public SkuGroup(string name, Guid? parentId) : this()
         {
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentNullException($"Незаполнено обязательное поле {nameof(name)}");
@@ -24,6 +24,18 @@ namespace Prt.Graphit.Domain.AggregatesModel.Sku.Entities
                 throw new ArgumentNullException($"Незаполнено обязательное поле {nameof(ParentId)}");
 
             Id = Guid.NewGuid();
+            Name = name;
+            ParentId = parentId;
+        }
+        public SkuGroup(Guid id, string name, Guid? parentId) : this()
+        {
+            if (string.IsNullOrEmpty(name))
+                throw new ArgumentNullException($"Незаполнено обязательное поле {nameof(name)}");
+
+            if (ParentId == Guid.Empty)
+                throw new ArgumentNullException($"Незаполнено обязательное поле {nameof(ParentId)}");
+
+            Id = id;
             Name = name;
             ParentId = parentId;
         }

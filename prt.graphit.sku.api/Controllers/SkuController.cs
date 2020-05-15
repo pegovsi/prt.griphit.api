@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Prt.Graphit.Application.Common.Response;
+using Prt.Graphit.Application.Sku.Commands.CreateSku;
 using Prt.Graphit.Application.Sku.Models;
 using Prt.Graphit.Application.Sku.Queries;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Prt.Graphit.Sku.Api.Controllers
@@ -11,8 +14,12 @@ namespace Prt.Graphit.Sku.Api.Controllers
     // [ApiVersion(VersionController.Version10)]
     public class SkuController : BaseController
     {
-        [HttpGet]
+        [HttpGet, Route("{id}")]
         public async Task<ActionResult<SkuDto>> GetSkuById(Guid id)
             => await Mediator.Send(new GetSkuByIdQuery(id));
+
+        [HttpPost]
+        public async Task<Result<bool>> CreateSku([FromBody] CreateSkuCommand command, CancellationToken token)
+            => await Mediator.Send(command, token);
     }
 }

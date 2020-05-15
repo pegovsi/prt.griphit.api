@@ -31,7 +31,7 @@ namespace Prt.Graphit.Persistence
                 .AddEnvironmentVariables()
                 .Build();
 
-            var connectionString = configuration.GetSection($"ConnectionString:{ConnectionStringName}").Value;
+            var connectionString = configuration.GetSection($"ConnectionStrings:{ConnectionStringName}").Value;
 
             return Create(connectionString);
         }
