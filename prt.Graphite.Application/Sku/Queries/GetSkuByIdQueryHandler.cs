@@ -26,7 +26,7 @@ namespace Prt.Graphit.Application.Sku.Queries
             var model = await _skuDbContext.Set<Domain.AggregatesModel.Sku.Entities.Sku>()
                 .FirstOrDefaultAsync(x=>x.Id == request.SkuId);
 
-            return new SkuDto();
+            return new SkuDto { Id = model.Id, Name = model.Name };
         }
     }
 }
