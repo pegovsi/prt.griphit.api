@@ -27,8 +27,10 @@ namespace Prt.Graphit.Sku.Api.Controllers
         public async Task<VehicleDto> GetVehicle(Guid id, CancellationToken token)
                 => await Mediator.Send(new GetVehicleByIdQuery(id), token);
 
-        [HttpGet, Route("search/{text}")]
-        public async Task<VehicleDto[]> SearchVehicle(string text, CancellationToken token)
-                => await Mediator.Send(new SearchVehicleByNameQuery(text), token);
+        [HttpPost, Route("search")]
+        public async Task<VehicleDto[]> SearchVehicle(
+            [FromBody]SearchVehicleByNameQuery query,
+            CancellationToken token)
+                => await Mediator.Send(query, token);
     }
 }

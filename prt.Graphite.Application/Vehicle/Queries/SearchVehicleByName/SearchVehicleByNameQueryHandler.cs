@@ -19,7 +19,7 @@ namespace Prt.Graphit.Application.Vehicle.Queries.SearchVehicleByName
         public async override Task<VehicleDto[]> Handle(SearchVehicleByNameQuery request, CancellationToken cancellationToken)
         {
             var model = await ContextDb.Set<Domain.AggregatesModel.Vehicle.Entities.Vehicle>()
-                .Where(x => x.Name.Contains(request.VehicleNameSearch))
+                .Where(x => x.Name.ToLower().Contains(request.VehicleNameSearch.ToLower()))
                 .Include(x => x.VehicleType)
                 .Include(x => x.Chassis)
                 .Include(x => x.VehicleModel)

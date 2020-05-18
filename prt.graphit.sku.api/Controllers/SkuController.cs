@@ -3,6 +3,7 @@ using Prt.Graphit.Application.Common.Response;
 using Prt.Graphit.Application.Sku.Commands.CreateSku;
 using Prt.Graphit.Application.Sku.Models;
 using Prt.Graphit.Application.Sku.Queries;
+using Prt.Graphit.Application.Sku.Queries.SearchSkuByName;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,5 +22,10 @@ namespace Prt.Graphit.Sku.Api.Controllers
         [HttpPost]
         public async Task<Result<bool>> CreateSku([FromBody] CreateSkuCommand command, CancellationToken token)
             => await Mediator.Send(command, token);
+
+        [HttpPost, Route("search")]
+        public async Task<ActionResult<SkuDto[]>> SearchSku(
+            [FromBody] SearchSkuByNameQuery query,
+            CancellationToken token) => await Mediator.Send(query, token);
     }
 }

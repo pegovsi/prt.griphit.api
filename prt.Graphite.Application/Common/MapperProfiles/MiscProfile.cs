@@ -6,6 +6,7 @@ using Prt.Graphit.Application.Condition.Queries.Models;
 using Prt.Graphit.Application.Division.Queries.Models;
 using Prt.Graphit.Application.Garrison.Queries.Models;
 using Prt.Graphit.Application.Manufacturer.Queries.Models;
+using Prt.Graphit.Application.Sku.Models;
 using Prt.Graphit.Application.Subdivision.Queries.Models;
 using Prt.Graphit.Application.Vehicle.Queries.Models;
 using Prt.Graphit.Application.VehicleModel.Queries.Models;
@@ -17,6 +18,11 @@ namespace Prt.Graphit.Application.Common.MapperProfiles
     {
         public MiscProfile()
         {
+            CreateMap<Domain.AggregatesModel.Sku.Entities.Sku, SkuDto>();
+            CreateMap<Domain.AggregatesModel.Sku.Entities.SkuGroup, SkuGroupDto>();
+            CreateMap<Domain.AggregatesModel.Sku.Entities.SkuType, SkuTypeDto>();
+            CreateMap<Domain.AggregatesModel.Sku.Entities.Unit, UnitDto>();
+
             CreateMap<Domain.AggregatesModel.Vehicle.Entities.VehicleType, VehicleTypeDto>();
             CreateMap<Domain.AggregatesModel.Vehicle.Entities.Vehicle, VehicleDto>();
             CreateMap<Domain.AggregatesModel.Vehicle.Entities.Chassis, ChassisDto>();
