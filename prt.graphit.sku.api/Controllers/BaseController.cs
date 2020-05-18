@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Prt.Graphit.Sku.Api.Controllers
+namespace Prt.Graphit.Api.Controllers
 {
     [ApiController]
     [Produces("application/json")]

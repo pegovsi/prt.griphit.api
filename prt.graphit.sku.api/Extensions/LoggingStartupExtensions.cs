@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
 
-namespace Prt.Graphit.Sku.Api.Extensions
+namespace Prt.Graphit.Api.Extensions
 {
     public static class LoggingStartupExtensions
     {

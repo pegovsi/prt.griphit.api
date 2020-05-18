@@ -14,7 +14,7 @@ namespace Prt.Graphit.Persistence
 
         public TContext CreateDbContext(string[] args)
         {
-            var basePath = Directory.GetCurrentDirectory() + string.Format("{0}..{0}Prt.Graphit.Sku.Api", Path.DirectorySeparatorChar);
+            var basePath = Directory.GetCurrentDirectory() + string.Format("{0}..{0}Prt.Graphit.Api", Path.DirectorySeparatorChar);
             return Create(basePath, Environment.GetEnvironmentVariable(DotNetCoreEnvironment));
         }
 

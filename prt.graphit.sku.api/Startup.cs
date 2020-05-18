@@ -10,11 +10,11 @@ using Microsoft.OpenApi.Models;
 using Prt.Graphit.Application;
 using Prt.Graphit.Application.Common.Handlers;
 using Prt.Graphit.Application.Common.Interfaces;
-using Prt.Graphit.Sku.Api.Extensions;
+using Prt.Graphit.Api.Extensions;
 using System.Linq;
 using System.Reflection;
 
-namespace prt.graphit.sku.api
+namespace Prt.Graphit.Api
 {
     public class Startup
     {
@@ -57,7 +57,7 @@ namespace prt.graphit.sku.api
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = $"{nameof(Prt.Graphit.Sku.Api)}",
+                    Title = $"{nameof(Prt.Graphit.Api)}",
                 });
                 c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
                 c.CustomSchemaIds(x => x.FullName);

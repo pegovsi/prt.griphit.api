@@ -5,7 +5,7 @@ using System;
 using System.Diagnostics;
 using System.Reflection;
 
-namespace Prt.Graphit.Sku.Api.Extensions
+namespace Prt.Graphit.Api.Extensions
 {
     public static class AutoMapperStartupExtensions
     {

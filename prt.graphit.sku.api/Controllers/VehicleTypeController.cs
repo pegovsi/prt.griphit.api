@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Prt.Graphit.Application.Common.Response;
 using Prt.Graphit.Application.VehicleType.Commands.CreateVehicleType;
 
-namespace Prt.Graphit.Sku.Api.Controllers
+namespace Prt.Graphit.Api.Controllers
 {
     [ApiController]
     [Route("api/v{version:apiVersion}/vehicle-type")]

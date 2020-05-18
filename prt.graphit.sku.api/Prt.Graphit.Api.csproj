@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyName>Prt.Graphit.Sku.Api</AssemblyName>
-    <RootNamespace>Prt.Graphit.Sku.Api</RootNamespace>
+    <AssemblyName>Prt.Graphit.Api</AssemblyName>
+    <RootNamespace>Prt.Graphit.Api</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.4" />

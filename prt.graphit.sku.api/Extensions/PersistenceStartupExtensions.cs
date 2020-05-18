@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Prt.Graphit.Application.Common.Interfaces;
 using Prt.Graphit.Persistence;
 
-namespace Prt.Graphit.Sku.Api.Extensions
+namespace Prt.Graphit.Api.Extensions
 {
     public static class PersistenceStartupExtensions
     {

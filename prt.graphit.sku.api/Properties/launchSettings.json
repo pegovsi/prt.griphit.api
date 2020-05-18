@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "prt.graphit.sku.api": {
+    "Prt.Graphit.Api": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "weatherforecast",

@@ -8,7 +8,7 @@ using Prt.Graphit.Persistence;
 using System;
 using System.Reflection;
 
-namespace prt.graphit.sku.api
+namespace Prt.Graphit.Api
 {
     public class Program
     {

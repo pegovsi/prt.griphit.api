@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prt.Graphit.Sku.Api", "Prt.Graphit.Sku.Api.csproj", "{2B7E5E22-6852-448D-8C72-A743C11142CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prt.Graphit.Api", "Prt.Graphit.Api.csproj", "{2B7E5E22-6852-448D-8C72-A743C11142CA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{73721406-77D0-4083-9477-BCDB0DBD2641}"
 EndProject
@@ -17,15 +17,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{EFAC401C-D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{5F687E1E-8207-452B-89E4-835153FE7BAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prt.Graphit.Application", "..\prt.Graphite.Application\Prt.Graphit.Application.csproj", "{2123D37D-950E-43D4-8CA5-782159CD1CCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prt.Graphit.Application", "..\prt.Graphite.Application\Prt.Graphit.Application.csproj", "{2123D37D-950E-43D4-8CA5-782159CD1CCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prt.Graphit.Common", "..\Prt.Graphit.Common\Prt.Graphit.Common.csproj", "{4DF7036B-9E01-4AAA-BAEB-46B8E8CE8585}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prt.Graphit.Common", "..\Prt.Graphit.Common\Prt.Graphit.Common.csproj", "{4DF7036B-9E01-4AAA-BAEB-46B8E8CE8585}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prt.Graphit.Domain", "..\Prt.Graphit.Domain\Prt.Graphit.Domain.csproj", "{17781BCE-1DB3-48C7-B521-5721A1FAF1AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prt.Graphit.Domain", "..\Prt.Graphit.Domain\Prt.Graphit.Domain.csproj", "{17781BCE-1DB3-48C7-B521-5721A1FAF1AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prt.Graphit.Infrastructure", "..\Prt.Graphit.Infrastructure\Prt.Graphit.Infrastructure.csproj", "{8BE77A5A-E68D-41E7-BC8B-60A07E4D0CBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prt.Graphit.Infrastructure", "..\Prt.Graphit.Infrastructure\Prt.Graphit.Infrastructure.csproj", "{8BE77A5A-E68D-41E7-BC8B-60A07E4D0CBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prt.Graphit.Persistence", "..\Prt.Graphit.Persistence\Prt.Graphit.Persistence.csproj", "{55DDE80C-DB14-4399-A2CA-01FD1201281C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prt.Graphit.Persistence", "..\Prt.Graphit.Persistence\Prt.Graphit.Persistence.csproj", "{55DDE80C-DB14-4399-A2CA-01FD1201281C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

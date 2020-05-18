@@ -11,7 +11,7 @@ using Prt.Graphit.Application.Vehicle.Queries.GetVehicleById;
 using Prt.Graphit.Application.Vehicle.Queries.Models;
 using Prt.Graphit.Application.Vehicle.Queries.SearchVehicleByName;
 
-namespace Prt.Graphit.Sku.Api.Controllers
+namespace Prt.Graphit.Api.Controllers
 {
     [Route("api/v{version:apiVersion}/vehicles")]
     // [ApiVersion(VersionController.Version10)]

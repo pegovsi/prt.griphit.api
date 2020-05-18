@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Prt.Graphit.Application.City.Commands.CreateCity;
 using Prt.Graphit.Application.Common.Response;
 
-namespace Prt.Graphit.Sku.Api.Controllers
+namespace Prt.Graphit.Api.Controllers
 {
     [ApiController]
     [Route("api/v{version:apiVersion}/city")]

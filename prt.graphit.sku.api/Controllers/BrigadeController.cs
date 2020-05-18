@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Prt.Graphit.Application.Brigade.Commands.CreateBrigade;
 using Prt.Graphit.Application.Common.Response;
 
-namespace Prt.Graphit.Sku.Api.Controllers
+namespace Prt.Graphit.Api.Controllers
 {
     [ApiController]
     [Route("api/v{version:apiVersion}/brigade")]

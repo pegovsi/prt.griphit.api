@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Prt.Graphit.Application.Common.Response;
 using Prt.Graphit.Application.Subdivision.Commands.CreateSubdivision;
 
-namespace Prt.Graphit.Sku.Api.Controllers
+namespace Prt.Graphit.Api.Controllers
 {
     [Route("api/v{version:apiVersion}/subdivision")]
     // [ApiVersion(VersionController.Version10)]
