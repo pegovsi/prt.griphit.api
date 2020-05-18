@@ -8,7 +8,7 @@ using Prt.Graphit.Persistence;
 
 namespace Prt.Graphit.Persistence.Migrations
 {
-    [DbContext(typeof(SkuDbContext))]
+    [DbContext(typeof(AppDbContext))]
     partial class SkuDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

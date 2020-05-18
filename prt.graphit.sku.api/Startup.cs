@@ -36,7 +36,7 @@ namespace Prt.Graphit.Api
             services.AddControllers()
                .AddNewtonsoftJson(options =>
                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
-               .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ISkuDbContext>());
+               .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<IAppDbContext>());
 
             services.AddOptions();
 

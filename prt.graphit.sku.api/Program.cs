@@ -21,7 +21,7 @@ namespace Prt.Graphit.Api
 
                 try
                 {
-                    var context = services.GetRequiredService<SkuDbContext>();
+                    var context = services.GetRequiredService<AppDbContext>();
                     context.Database.Migrate();
                     //DbInitializer.SeedAsync(context);
                 }

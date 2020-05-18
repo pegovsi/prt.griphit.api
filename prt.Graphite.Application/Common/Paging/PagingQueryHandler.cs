@@ -11,7 +11,7 @@ namespace Prt.Graphit.Application.Common.Paging
         where TQ : IRequest<TCM>
         where TCM : CollectionViewModel<TM>, new()
     {
-        protected PagingQueryHandler(ISkuDbContext applicationDbContext, IMapper mapper)
+        protected PagingQueryHandler(IAppDbContext applicationDbContext, IMapper mapper)
             : base(applicationDbContext, mapper)
         {
         }

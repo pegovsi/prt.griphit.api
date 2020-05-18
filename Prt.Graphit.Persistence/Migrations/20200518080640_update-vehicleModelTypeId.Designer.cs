@@ -9,7 +9,7 @@ using Prt.Graphit.Persistence;
 
 namespace Prt.Graphit.Persistence.Migrations
 {
-    [DbContext(typeof(SkuDbContext))]
+    [DbContext(typeof(AppDbContext))]
     [Migration("20200518080640_update-vehicleModelTypeId")]
     partial class updatevehicleModelTypeId
     {

@@ -9,16 +9,16 @@ namespace Prt.Graphit.Application.VehicleModel.Commands.CreateVehicleModel
 {
     public class CreateVehicleModelCommandHandler : IRequestHandler<CreateVehicleModelCommand, Result<bool>>
     {
-        private readonly ISkuDbContext _skuDbContext;
+        private readonly IAppDbContext _appDbContext;
 
-        public CreateVehicleModelCommandHandler(ISkuDbContext skuDbContext)
+        public CreateVehicleModelCommandHandler(IAppDbContext skuDbContext)
         {
-            _skuDbContext = skuDbContext;
+            _appDbContext = skuDbContext;
         }
 
         public async Task<Result<bool>> Handle(CreateVehicleModelCommand request, CancellationToken cancellationToken)
         {
-            var vehicleModel = await _skuDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.VehicleModel>()
+            var vehicleModel = await _appDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.VehicleModel>()
                 .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
             if (vehicleModel is null)
             {
@@ -30,9 +30,9 @@ namespace Prt.Graphit.Application.VehicleModel.Commands.CreateVehicleModel
                     vehicleModelTypeId: request.VehicleModelTypeId,
                     chassiId: request.ChassiId
                 );
-                await _skuDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.VehicleModel>()
+                await _appDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.VehicleModel>()
                     .AddAsync(vehicleModel, cancellationToken);
-                await _skuDbContext.SaveChangesAsync(cancellationToken);
+                await _appDbContext.SaveChangesAsync(cancellationToken);
             }
             return ResultHelper.Success(true);
         }

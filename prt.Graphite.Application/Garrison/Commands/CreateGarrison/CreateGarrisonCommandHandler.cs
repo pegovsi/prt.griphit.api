@@ -9,16 +9,16 @@ namespace Prt.Graphit.Application.Garrison.Commands.CreateGarrison
 {
     public class CreateGarrisonCommandHandler : IRequestHandler<CreateGarrisonCommand, Result<bool>>
     {
-        private readonly ISkuDbContext _skuDbContext;
+        private readonly IAppDbContext _appDbContext;
 
-        public CreateGarrisonCommandHandler(ISkuDbContext skuDbContext)
+        public CreateGarrisonCommandHandler(IAppDbContext skuDbContext)
         {
-            _skuDbContext = skuDbContext;
+            _appDbContext = skuDbContext;
         }
 
         public async Task<Result<bool>> Handle(CreateGarrisonCommand request, CancellationToken cancellationToken)
         {
-            var garrison = await _skuDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Garrison>()
+            var garrison = await _appDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Garrison>()
                 .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
             if (garrison is null)
             {
@@ -30,9 +30,9 @@ namespace Prt.Graphit.Application.Garrison.Commands.CreateGarrison
                     coordinateY: request.CoordinateY,
                     rate: request.Rate
                 );
-                await _skuDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Garrison>()
+                await _appDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Garrison>()
                     .AddAsync(garrison, cancellationToken);
-                await _skuDbContext.SaveChangesAsync(cancellationToken);
+                await _appDbContext.SaveChangesAsync(cancellationToken);
             }
             return ResultHelper.Success(true);
         }

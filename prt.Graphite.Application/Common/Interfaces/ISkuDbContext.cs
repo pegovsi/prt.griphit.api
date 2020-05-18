@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Prt.Graphit.Application.Common.Interfaces
 {
-    public interface ISkuDbContext
+    public interface IAppDbContext
     {
         DbSet<T> Set<T>()
            where T : class;

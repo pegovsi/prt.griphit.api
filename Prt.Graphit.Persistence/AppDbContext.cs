@@ -5,9 +5,9 @@ using Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities;
 
 namespace Prt.Graphit.Persistence
 {
-    public class SkuDbContext : DbContext, ISkuDbContext
+    public class AppDbContext : DbContext, IAppDbContext
     {
-        public SkuDbContext(DbContextOptions<SkuDbContext> options)
+        public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
         }
@@ -36,7 +36,7 @@ namespace Prt.Graphit.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(SkuDbContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         }
     }
 }

@@ -9,16 +9,16 @@ namespace Prt.Graphit.Application.Chassis.Commands.CreateChassis
 {
     public class CreateChassisCommandHandler : IRequestHandler<CreateChassisCommand, Result<bool>>
     {
-        private readonly ISkuDbContext _skuDbContext;
+        private readonly IAppDbContext _appDbContext;
 
-        public CreateChassisCommandHandler(ISkuDbContext skuDbContext)
+        public CreateChassisCommandHandler(IAppDbContext skuDbContext)
         {
-            _skuDbContext = skuDbContext;
+            _appDbContext = skuDbContext;
         }
 
         public async Task<Result<bool>> Handle(CreateChassisCommand request, CancellationToken cancellationToken)
         {
-            var chassis = await _skuDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Chassis>()
+            var chassis = await _appDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Chassis>()
                 .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
             if (chassis is null)
             {
@@ -28,9 +28,9 @@ namespace Prt.Graphit.Application.Chassis.Commands.CreateChassis
                     name: request.Name,
                     manufacturerId: request.ManufacturerId.Value
                 );
-                await _skuDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Chassis>()
+                await _appDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Chassis>()
                     .AddAsync(chassis, cancellationToken);
-                await _skuDbContext.SaveChangesAsync(cancellationToken);
+                await _appDbContext.SaveChangesAsync(cancellationToken);
             }
             return ResultHelper.Success(true);
         }

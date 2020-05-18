@@ -11,7 +11,7 @@ namespace Prt.Graphit.Application.Vehicle.Queries.SearchVehicleByName
 {
     public class SearchVehicleByNameQueryHandler : HandlerQueryBase<SearchVehicleByNameQuery, VehicleDto[]>
     {
-        public SearchVehicleByNameQueryHandler(ISkuDbContext skuDbContext, IMapper mapper)
+        public SearchVehicleByNameQueryHandler(IAppDbContext skuDbContext, IMapper mapper)
             : base(skuDbContext, mapper)
         {
         }

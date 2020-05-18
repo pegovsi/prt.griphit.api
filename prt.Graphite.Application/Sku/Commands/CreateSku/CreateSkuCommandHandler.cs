@@ -11,18 +11,18 @@ namespace Prt.Graphit.Application.Sku.Commands.CreateSku
 {
     public class CreateSkuCommandHandler : IRequestHandler<CreateSkuCommand, Result<bool>>
     {
-        private readonly ISkuDbContext _skuDbContext;
+        private readonly IAppDbContext _appDbContext;
 
-        public CreateSkuCommandHandler(ISkuDbContext skuDbContext)
+        public CreateSkuCommandHandler(IAppDbContext skuDbContext)
         {
-            _skuDbContext = skuDbContext;
+            _appDbContext = skuDbContext;
         }
 
         public async Task<Result<bool>> Handle(CreateSkuCommand request, CancellationToken cancellationToken)
         {
             if (request.SkuGroup != null)
             {
-                var group = await _skuDbContext.Set<Domain.AggregatesModel.Sku.Entities.SkuGroup>()
+                var group = await _appDbContext.Set<Domain.AggregatesModel.Sku.Entities.SkuGroup>()
                     .FirstOrDefaultAsync(x => x.Id == request.SkuGroup.Id, cancellationToken);
 
                 if (group is null)
@@ -33,13 +33,13 @@ namespace Prt.Graphit.Application.Sku.Commands.CreateSku
                         name: request.SkuGroup.Name,
                         parentId: request.SkuGroup.ParentId
                     );
-                    await _skuDbContext.Set<Domain.AggregatesModel.Sku.Entities.SkuGroup>()
+                    await _appDbContext.Set<Domain.AggregatesModel.Sku.Entities.SkuGroup>()
                         .AddAsync(skugroup);
-                    await _skuDbContext.SaveChangesAsync(cancellationToken);
+                    await _appDbContext.SaveChangesAsync(cancellationToken);
                 }
             }
 /////////////////////////////////////////////////////////////////////////////////////////////////
-            var type = await _skuDbContext.Set<Domain.AggregatesModel.Sku.Entities.SkuType>()
+            var type = await _appDbContext.Set<Domain.AggregatesModel.Sku.Entities.SkuType>()
                 .FirstOrDefaultAsync(x => x.Id == request.SkuType.Id, cancellationToken);
             if (type is null)
             {
@@ -48,13 +48,13 @@ namespace Prt.Graphit.Application.Sku.Commands.CreateSku
                     id: request.SkuType.Id,
                     name: request.SkuType.Name
                 );
-                await _skuDbContext.Set<Domain.AggregatesModel.Sku.Entities.SkuType>()
+                await _appDbContext.Set<Domain.AggregatesModel.Sku.Entities.SkuType>()
                     .AddAsync(skutype);
-                await _skuDbContext.SaveChangesAsync(cancellationToken);
+                await _appDbContext.SaveChangesAsync(cancellationToken);
             }
             ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-            var sku = await _skuDbContext.Set<Domain.AggregatesModel.Sku.Entities.Sku>()
+            var sku = await _appDbContext.Set<Domain.AggregatesModel.Sku.Entities.Sku>()
                 .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
             if(sku != null)
                 return ResultHelper.Success(true);
@@ -75,8 +75,8 @@ namespace Prt.Graphit.Application.Sku.Commands.CreateSku
                 sku.AddUnit(unit.Name, unit.Coefficient, unit.Base);
             }
 
-            await _skuDbContext.Set<Domain.AggregatesModel.Sku.Entities.Sku>().AddAsync(sku, cancellationToken);
-            await _skuDbContext.SaveChangesAsync(cancellationToken);
+            await _appDbContext.Set<Domain.AggregatesModel.Sku.Entities.Sku>().AddAsync(sku, cancellationToken);
+            await _appDbContext.SaveChangesAsync(cancellationToken);
             return ResultHelper.Success(true);
         }
     }

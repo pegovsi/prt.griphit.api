@@ -9,16 +9,16 @@ namespace Prt.Graphit.Application.Manufacturer.Commands
 {
     public class CreateManufacturerCommandHandler : IRequestHandler<CreateManufacturerCommand, Result<bool>>
     {
-        private readonly ISkuDbContext _skuDbContext;
+        private readonly IAppDbContext _appDbContext;
 
-        public CreateManufacturerCommandHandler(ISkuDbContext skuDbContext)
+        public CreateManufacturerCommandHandler(IAppDbContext skuDbContext)
         {
-            _skuDbContext = skuDbContext;
+            _appDbContext = skuDbContext;
         }
 
         public async Task<Result<bool>> Handle(CreateManufacturerCommand request, CancellationToken cancellationToken)
         {
-            var manufacturer = await _skuDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Manufacturer>()
+            var manufacturer = await _appDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Manufacturer>()
                 .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
             if (manufacturer is null)
             {
@@ -27,9 +27,9 @@ namespace Prt.Graphit.Application.Manufacturer.Commands
                     id: request.Id,
                     name: request.Name
                 );
-                await _skuDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Manufacturer>()
+                await _appDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Manufacturer>()
                     .AddAsync(manufacturer, cancellationToken);
-                await _skuDbContext.SaveChangesAsync(cancellationToken);
+                await _appDbContext.SaveChangesAsync(cancellationToken);
             }
             return ResultHelper.Success(true);
         }

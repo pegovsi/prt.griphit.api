@@ -13,18 +13,18 @@ namespace Prt.Graphit.Application.Vehicle.Queries.GetVehicleById
 {
     public class GetVehicleByIdQueryHandler : IRequestHandler<GetVehicleByIdQuery, VehicleDto>
     {
-        private readonly ISkuDbContext _skuDbContext;
+        private readonly IAppDbContext _appDbContext;
         private readonly IMapper _mapper;
 
-        public GetVehicleByIdQueryHandler(ISkuDbContext skuDbContext, IMapper mapper)
+        public GetVehicleByIdQueryHandler(IAppDbContext skuDbContext, IMapper mapper)
         {
-            _skuDbContext = skuDbContext;
+            _appDbContext = skuDbContext;
             _mapper = mapper;
         }
 
         public async Task<VehicleDto> Handle(GetVehicleByIdQuery request, CancellationToken cancellationToken)
         {
-            var model = await _skuDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Vehicle>()
+            var model = await _appDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Vehicle>()
                 .Include(x=>x.VehicleType)
                 .Include(x=>x.Chassis)
                 .Include(x=>x.VehicleModel)

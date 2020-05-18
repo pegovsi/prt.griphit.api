@@ -14,7 +14,7 @@ namespace Prt.Graphit.Application.Sku.Queries.SearchSkuByName
 {
     public class SearchSkuByNameQueryHandler : HandlerQueryBase<SearchSkuByNameQuery, SkuDto[]>
     {
-        public SearchSkuByNameQueryHandler(ISkuDbContext skuDbContext, IMapper mapper) 
+        public SearchSkuByNameQueryHandler(IAppDbContext skuDbContext, IMapper mapper) 
             : base(skuDbContext, mapper)
         {
         }

@@ -9,15 +9,15 @@ namespace Prt.Graphit.Application.Subdivision.Commands.CreateSubdivision
 {
     public class CreateSubdivisionCommandHandler : IRequestHandler<CreateSubdivisionCommand, Result<bool>>
     {
-        private readonly ISkuDbContext _skuDbContext;
+        private readonly IAppDbContext _appDbContext;
 
-        public CreateSubdivisionCommandHandler(ISkuDbContext skuDbContext)
+        public CreateSubdivisionCommandHandler(IAppDbContext skuDbContext)
         {
-            _skuDbContext = skuDbContext;
+            _appDbContext = skuDbContext;
         }
         public async Task<Result<bool>> Handle(CreateSubdivisionCommand request, CancellationToken cancellationToken)
         {
-            var subdivision = await _skuDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Subdivision>()
+            var subdivision = await _appDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Subdivision>()
                 .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
             if (subdivision is null)
             {
@@ -27,9 +27,9 @@ namespace Prt.Graphit.Application.Subdivision.Commands.CreateSubdivision
                     name: request.Name,
                     brigadeId: request.BrigadeId
                 );
-                await _skuDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Subdivision>()
+                await _appDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Subdivision>()
                     .AddAsync(subdivision, cancellationToken);
-                await _skuDbContext.SaveChangesAsync(cancellationToken);
+                await _appDbContext.SaveChangesAsync(cancellationToken);
             }
             return ResultHelper.Success(true);
         }

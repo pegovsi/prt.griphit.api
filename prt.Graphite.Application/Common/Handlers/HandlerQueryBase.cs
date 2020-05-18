@@ -12,7 +12,7 @@ namespace Prt.Graphit.Application.Common.Handlers
     {
         protected IMapper AutoMapper { get; private set; }
 
-        protected HandlerQueryBase(ISkuDbContext skuDbContext,  IMapper mapper)
+        protected HandlerQueryBase(IAppDbContext skuDbContext,  IMapper mapper)
             : base(skuDbContext)
         {
             AutoMapper = mapper ?? throw new ArgumentNullException(nameof(mapper));

@@ -9,7 +9,7 @@ using Prt.Graphit.Persistence;
 
 namespace Prt.Graphit.Persistence.Migrations
 {
-    [DbContext(typeof(SkuDbContext))]
+    [DbContext(typeof(AppDbContext))]
     [Migration("20200515083635_Init")]
     partial class Init
     {

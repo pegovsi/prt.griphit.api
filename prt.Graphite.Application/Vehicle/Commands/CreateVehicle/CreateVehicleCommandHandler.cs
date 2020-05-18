@@ -10,20 +10,20 @@ namespace Prt.Graphit.Application.Vehicle.Commands.CreateVehicle
 {
     public class CreateVehicleCommandHandler : IRequestHandler<CreateVehicleCommand, Result<bool>>
     {
-        private readonly ISkuDbContext _skuDbContext;
+        private readonly IAppDbContext _appDbContext;
 
-        public CreateVehicleCommandHandler(ISkuDbContext skuDbContext)
+        public CreateVehicleCommandHandler(IAppDbContext skuDbContext)
         {
-            _skuDbContext = skuDbContext;
+            _appDbContext = skuDbContext;
         }
 
         public async Task<Result<bool>> Handle(CreateVehicleCommand request, CancellationToken cancellationToken)
         {
-            var vehicle = await _skuDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Vehicle>()
+            var vehicle = await _appDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Vehicle>()
                 .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
             if (vehicle is null)
             {
-                var condition = await _skuDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Condition>()
+                var condition = await _appDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Condition>()
                 .FirstOrDefaultAsync(x => x.Name == request.ConditionId, cancellationToken);
 
                 vehicle = new Domain.AggregatesModel.Vehicle.Entities.Vehicle
@@ -52,9 +52,9 @@ namespace Prt.Graphit.Application.Vehicle.Commands.CreateVehicle
                     readoutDate: request.ReadoutDate,
                     startupDate: request.ReadoutDate
                 );
-                await _skuDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Vehicle>()
+                await _appDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Vehicle>()
                     .AddAsync(vehicle, cancellationToken);
-                await _skuDbContext.SaveChangesAsync(cancellationToken);
+                await _appDbContext.SaveChangesAsync(cancellationToken);
             }
             return ResultHelper.Success(true);
         }

@@ -9,16 +9,16 @@ namespace Prt.Graphit.Application.City.Commands.CreateCity
 {
     public class CreateCityCommandHandler : IRequestHandler<CreateCityCommand, Result<bool>>
     {
-        private readonly ISkuDbContext _skuDbContext;
+        private readonly IAppDbContext _appDbContext;
 
-        public CreateCityCommandHandler(ISkuDbContext skuDbContext)
+        public CreateCityCommandHandler(IAppDbContext skuDbContext)
         {
-            _skuDbContext = skuDbContext;
+            _appDbContext = skuDbContext;
         }
 
         public async Task<Result<bool>> Handle(CreateCityCommand request, CancellationToken cancellationToken)
         {
-            var city = await _skuDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.City>()
+            var city = await _appDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.City>()
                 .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
             if (city is null)
             {
@@ -28,9 +28,9 @@ namespace Prt.Graphit.Application.City.Commands.CreateCity
                     name: request.Name,
                     garrisonId: request.GarrisonId
                 );
-                await _skuDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.City>()
+                await _appDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.City>()
                     .AddAsync(city, cancellationToken);
-                await _skuDbContext.SaveChangesAsync(cancellationToken);
+                await _appDbContext.SaveChangesAsync(cancellationToken);
             }
             return ResultHelper.Success(true);
         }

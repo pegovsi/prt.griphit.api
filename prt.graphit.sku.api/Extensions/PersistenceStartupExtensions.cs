@@ -11,10 +11,10 @@ namespace Prt.Graphit.Api.Extensions
         public static IServiceCollection AddPersistence(
             this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<SkuDbContext>(options =>
+            services.AddDbContext<AppDbContext>(options =>
                 options.UseNpgsql(configuration.GetSection("ConnectionStrings:Database").Value));
 
-            services.AddScoped<ISkuDbContext>(provider => provider.GetService<SkuDbContext>());
+            services.AddScoped<IAppDbContext>(provider => provider.GetService<AppDbContext>());
 
             services.AddPersistence();
             return services;
