@@ -11,9 +11,9 @@ namespace Prt.Graphit.Application.City.Commands.CreateCity
     {
         private readonly IAppDbContext _appDbContext;
 
-        public CreateCityCommandHandler(IAppDbContext skuDbContext)
+        public CreateCityCommandHandler(IAppDbContext appDbContext)
         {
-            _appDbContext = skuDbContext;
+            _appDbContext = appDbContext;
         }
 
         public async Task<Result<bool>> Handle(CreateCityCommand request, CancellationToken cancellationToken)

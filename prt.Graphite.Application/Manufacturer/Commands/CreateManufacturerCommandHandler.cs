@@ -11,9 +11,9 @@ namespace Prt.Graphit.Application.Manufacturer.Commands
     {
         private readonly IAppDbContext _appDbContext;
 
-        public CreateManufacturerCommandHandler(IAppDbContext skuDbContext)
+        public CreateManufacturerCommandHandler(IAppDbContext appDbContext)
         {
-            _appDbContext = skuDbContext;
+            _appDbContext = appDbContext;
         }
 
         public async Task<Result<bool>> Handle(CreateManufacturerCommand request, CancellationToken cancellationToken)

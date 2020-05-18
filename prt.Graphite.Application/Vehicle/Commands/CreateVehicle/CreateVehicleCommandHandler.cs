@@ -12,9 +12,9 @@ namespace Prt.Graphit.Application.Vehicle.Commands.CreateVehicle
     {
         private readonly IAppDbContext _appDbContext;
 
-        public CreateVehicleCommandHandler(IAppDbContext skuDbContext)
+        public CreateVehicleCommandHandler(IAppDbContext appDbContext)
         {
-            _appDbContext = skuDbContext;
+            _appDbContext = appDbContext;
         }
 
         public async Task<Result<bool>> Handle(CreateVehicleCommand request, CancellationToken cancellationToken)

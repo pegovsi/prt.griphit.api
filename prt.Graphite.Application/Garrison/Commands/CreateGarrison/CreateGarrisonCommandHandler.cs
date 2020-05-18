@@ -11,9 +11,9 @@ namespace Prt.Graphit.Application.Garrison.Commands.CreateGarrison
     {
         private readonly IAppDbContext _appDbContext;
 
-        public CreateGarrisonCommandHandler(IAppDbContext skuDbContext)
+        public CreateGarrisonCommandHandler(IAppDbContext appDbContext)
         {
-            _appDbContext = skuDbContext;
+            _appDbContext = appDbContext;
         }
 
         public async Task<Result<bool>> Handle(CreateGarrisonCommand request, CancellationToken cancellationToken)

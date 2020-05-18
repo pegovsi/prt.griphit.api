@@ -11,9 +11,9 @@ namespace Prt.Graphit.Application.Subdivision.Commands.CreateSubdivision
     {
         private readonly IAppDbContext _appDbContext;
 
-        public CreateSubdivisionCommandHandler(IAppDbContext skuDbContext)
+        public CreateSubdivisionCommandHandler(IAppDbContext appDbContext)
         {
-            _appDbContext = skuDbContext;
+            _appDbContext = appDbContext;
         }
         public async Task<Result<bool>> Handle(CreateSubdivisionCommand request, CancellationToken cancellationToken)
         {

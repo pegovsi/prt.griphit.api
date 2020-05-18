@@ -11,9 +11,9 @@ namespace Prt.Graphit.Application.VehicleModel.Commands.CreateVehicleModel
     {
         private readonly IAppDbContext _appDbContext;
 
-        public CreateVehicleModelCommandHandler(IAppDbContext skuDbContext)
+        public CreateVehicleModelCommandHandler(IAppDbContext appDbContext)
         {
-            _appDbContext = skuDbContext;
+            _appDbContext = appDbContext;
         }
 
         public async Task<Result<bool>> Handle(CreateVehicleModelCommand request, CancellationToken cancellationToken)

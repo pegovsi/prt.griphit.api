@@ -13,9 +13,9 @@ namespace Prt.Graphit.Application.Sku.Commands.CreateSku
     {
         private readonly IAppDbContext _appDbContext;
 
-        public CreateSkuCommandHandler(IAppDbContext skuDbContext)
+        public CreateSkuCommandHandler(IAppDbContext appDbContext)
         {
-            _appDbContext = skuDbContext;
+            _appDbContext = appDbContext;
         }
 
         public async Task<Result<bool>> Handle(CreateSkuCommand request, CancellationToken cancellationToken)

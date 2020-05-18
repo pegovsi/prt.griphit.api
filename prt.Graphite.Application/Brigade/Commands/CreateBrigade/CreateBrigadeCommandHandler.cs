@@ -11,9 +11,9 @@ namespace Prt.Graphit.Application.Brigade.Commands.CreateBrigade
     {
         private readonly IAppDbContext _appDbContext;
 
-        public CreateBrigadeCommandHandler(IAppDbContext skuDbContext)
+        public CreateBrigadeCommandHandler(IAppDbContext appDbContext)
         {
-            _appDbContext = skuDbContext;
+            _appDbContext = appDbContext;
         }
 
         public async Task<Result<bool>> Handle(CreateBrigadeCommand request, CancellationToken cancellationToken)

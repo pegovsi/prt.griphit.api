@@ -11,9 +11,9 @@ namespace Prt.Graphit.Application.Chassis.Commands.CreateChassis
     {
         private readonly IAppDbContext _appDbContext;
 
-        public CreateChassisCommandHandler(IAppDbContext skuDbContext)
+        public CreateChassisCommandHandler(IAppDbContext appDbContext)
         {
-            _appDbContext = skuDbContext;
+            _appDbContext = appDbContext;
         }
 
         public async Task<Result<bool>> Handle(CreateChassisCommand request, CancellationToken cancellationToken)

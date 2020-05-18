@@ -10,8 +10,8 @@ namespace Prt.Graphit.Application.Sku.Queries
 {
     public class GetSkuByIdQueryHandler : HandlerQueryBase<GetSkuByIdQuery, SkuDto>
     {
-        public GetSkuByIdQueryHandler(IAppDbContext skuDbContext, IMapper mapper)
-            : base(skuDbContext, mapper)
+        public GetSkuByIdQueryHandler(IAppDbContext appDbContext, IMapper mapper)
+            : base(appDbContext, mapper)
         {
         }
 
