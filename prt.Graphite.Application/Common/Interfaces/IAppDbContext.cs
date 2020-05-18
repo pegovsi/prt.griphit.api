@@ -9,7 +9,7 @@ namespace Prt.Graphit.Application.Common.Interfaces
         DbSet<T> Set<T>()
            where T : class;
 
-        DbContext SkuContext { get; }
+        DbContext DbContext { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
