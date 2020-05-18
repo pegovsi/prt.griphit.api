@@ -32,7 +32,7 @@ namespace Prt.Graphit.Persistence
         public DbSet<Vehicle> Vehicles { get; set; }
 
 
-        public DbContext SkuContext => this;
+        public DbContext DbContext => this;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
