@@ -17,14 +17,14 @@ namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
             Name = name;
         }
 
-        public VehicleModel(string name, string shortName, Guid vehicleModelId, Guid chassiId)
+        public VehicleModel(string name, string shortName, Guid vehicleModelTypeId, Guid chassiId)
            : this()
         {
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentNullException($"Незаполнено обязательное поле {nameof(name)}");
 
-            if (vehicleModelId == Guid.Empty)
-                throw new ArgumentNullException($"Незаполнено обязательное поле {nameof(vehicleModelId)}");
+            if (vehicleModelTypeId == Guid.Empty)
+                throw new ArgumentNullException($"Незаполнено обязательное поле {nameof(vehicleModelTypeId)}");
 
             if (chassiId == Guid.Empty)
                 throw new ArgumentNullException($"Незаполнено обязательное поле {nameof(chassiId)}");
@@ -32,17 +32,17 @@ namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
             Id = Guid.NewGuid();
             Name = name;
             ShortName = shortName;
-            VehicleModelId = vehicleModelId;
+            VehicleModelTypeId = vehicleModelTypeId;
             ChassiId = chassiId;
         }
-        public VehicleModel(Guid id, string name, string shortName, Guid vehicleModelId, Guid chassiId)
+        public VehicleModel(Guid id, string name, string shortName, Guid vehicleModelTypeId, Guid chassiId)
           : this()
         {
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentNullException($"Незаполнено обязательное поле {nameof(name)}");
 
-            if (vehicleModelId == Guid.Empty)
-                throw new ArgumentNullException($"Незаполнено обязательное поле {nameof(vehicleModelId)}");
+            if (vehicleModelTypeId == Guid.Empty)
+                throw new ArgumentNullException($"Незаполнено обязательное поле {nameof(vehicleModelTypeId)}");
 
             if (chassiId == Guid.Empty)
                 throw new ArgumentNullException($"Незаполнено обязательное поле {nameof(chassiId)}");
@@ -50,14 +50,14 @@ namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
             Id = id;
             Name = name;
             ShortName = shortName;
-            VehicleModelId = vehicleModelId;
+            VehicleModelTypeId = vehicleModelTypeId;
             ChassiId = chassiId;
         }
 
         public override Guid Id { get; protected set; }
         public string Name { get; private set; }
         public string ShortName { get; private set; }
-        public Guid VehicleModelId { get; private set; }
+        public Guid VehicleModelTypeId { get; private set; }
         public Guid ChassiId { get; private set; }
         public string IconLink { get; private set; }
 

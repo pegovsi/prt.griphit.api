@@ -1,7 +1,5 @@
 ﻿using Prt.Graphit.Domain.Common;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
 {
@@ -18,11 +16,42 @@ namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
         public Vehicle(string name, Guid vehicleTypeId, Guid chassiId, Guid vehicleModelId,
             string vehicleNomberFactory, string vehicleNomberRegister, string vehicleNomberChassis,
             Guid manufacturerId, DateTime yearOfIssue, Guid garrisonId, Guid cityId, Guid divisionId,
-            Guid subdivisionId, Guid brigadeId, bool isApproved, decimal mileage, decimal shotsAmoun,
-            decimal operatingTime, Guid conditionId, string responsible, DateTime readoutDate, DateTime startupDate)
+            Guid subdivisionId, Guid? brigadeId, bool isApproved, decimal mileage, decimal shotsAmoun,
+            decimal operatingTime, Guid? conditionId, string responsible, DateTime readoutDate, DateTime startupDate)
             : this()
         {
             Id = Guid.NewGuid();
+            Name = name;
+            VehicleTypeId = vehicleTypeId;
+            ChassiId = chassiId;
+            VehicleModelId = vehicleModelId;
+            VehicleNomberFactory = vehicleNomberFactory;
+            VehicleNomberRegister = vehicleNomberRegister;
+            VehicleNomberChassis = vehicleNomberChassis;
+            ManufacturerId = manufacturerId;
+            YearOfIssue = yearOfIssue;
+            GarrisonId = garrisonId;
+            CityId = cityId;
+            DivisionId = divisionId;
+            SubdivisionId = subdivisionId;
+            BrigadeId = brigadeId;
+            IsApproved = isApproved;
+            Mileage = mileage;
+            ShotsAmount = shotsAmoun;
+            OperatingTime = operatingTime;
+            ConditionId = conditionId;
+            Responsible = responsible;
+            ReadoutDate = readoutDate;
+            StartupDate = startupDate;
+        }
+        public Vehicle(Guid id, string name, Guid vehicleTypeId, Guid chassiId, Guid vehicleModelId,
+            string vehicleNomberFactory, string vehicleNomberRegister, string vehicleNomberChassis,
+            Guid manufacturerId, DateTime yearOfIssue, Guid garrisonId, Guid cityId, Guid divisionId,
+            Guid subdivisionId, Guid? brigadeId, bool isApproved, decimal mileage, decimal shotsAmoun,
+            decimal operatingTime, Guid? conditionId, string responsible, DateTime readoutDate, DateTime startupDate)
+            : this()
+        {
+            Id = id;
             Name = name;
             VehicleTypeId = vehicleTypeId;
             ChassiId = chassiId;
@@ -69,14 +98,14 @@ namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
         public Division Division { get; private set; }
         public Guid SubdivisionId { get; private set; }
         public Subdivision Subdivision { get; private set; }
-        public Guid BrigadeId { get; private set; }
+        public Guid? BrigadeId { get; private set; }
         public Brigade Brigade { get; set; }
 
         public bool IsApproved { get; private set; }
         public decimal Mileage { get; private set; }
         public decimal ShotsAmount { get; private set; }
         public decimal OperatingTime { get; private set; }
-        public Guid ConditionId { get; private set; }
+        public Guid? ConditionId { get; private set; }
         public Condition Condition { get; private set; }
         public string Responsible { get; private set; }
         public DateTime ReadoutDate { get; private set; }
