@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Prt.Graphit.Api.Common.Api;
 using Prt.Graphit.Application.Common.Response;
 using Prt.Graphit.Application.Sku.Commands.CreateSku;
 using Prt.Graphit.Application.Sku.Models;
@@ -10,9 +11,8 @@ using System.Threading.Tasks;
 
 namespace Prt.Graphit.Api.Controllers
 {
-    [ApiController]
     [Route("api/v{version:apiVersion}/sku")]
-    // [ApiVersion(VersionController.Version10)]
+    [ApiVersion(VersionController.Version1_0)]
     public class SkuController : BaseController
     {
         [HttpGet, Route("{id}")]

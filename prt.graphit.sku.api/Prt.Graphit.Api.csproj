@@ -33,6 +33,7 @@
     <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Prt.Graphit.Api.Common\Prt.Graphit.Api.Common.csproj" />
     <ProjectReference Include="..\Prt.Graphit.Common\Prt.Graphit.Common.csproj" />
     <ProjectReference Include="..\Prt.Graphit.Infrastructure\Prt.Graphit.Infrastructure.csproj" />
     <ProjectReference Include="..\Prt.Graphit.Persistence\Prt.Graphit.Persistence.csproj" />
