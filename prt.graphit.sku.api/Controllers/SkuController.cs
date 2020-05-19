@@ -20,12 +20,15 @@ namespace Prt.Graphit.Api.Controllers
             => await Mediator.Send(new GetSkuByIdQuery(id));
 
         [HttpPost]
-        public async Task<Result<bool>> CreateSku([FromBody] CreateSkuCommand command, CancellationToken token)
+        public async Task<Result<bool>> CreateSku(
+            [FromBody] CreateSkuCommand command,
+            CancellationToken token)
             => await Mediator.Send(command, token);
 
         [HttpPost, Route("search")]
         public async Task<ActionResult<SkuDto[]>> SearchSku(
             [FromBody] SearchSkuByNameQuery query,
-            CancellationToken token) => await Mediator.Send(query, token);
+            CancellationToken token)
+            => await Mediator.Send(query, token);
     }
 }
