@@ -5,6 +5,10 @@
     <AssemblyName>Prt.Graphit.Api</AssemblyName>
     <RootNamespace>Prt.Graphit.Api</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="appsettings.Production.json" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
@@ -35,6 +39,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="appsettings.Production.json" />
   </ItemGroup>
 
 </Project>
