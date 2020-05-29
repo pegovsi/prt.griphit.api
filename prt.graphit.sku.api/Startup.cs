@@ -13,6 +13,7 @@ using Prt.Graphit.Application.Common.Interfaces;
 using Prt.Graphit.Api.Extensions;
 using System.Linq;
 using System.Reflection;
+using System.Collections.Generic;
 
 namespace Prt.Graphit.Api
 {
@@ -44,6 +45,19 @@ namespace Prt.Graphit.Api
                     .AddPersistence(Configuration)
                     .AddAutoMapper(_assemblyApplication)
                     .AddApplication();
+
+            //var corsParams = Configuration.GetSection("Cors").Get<List<string>>();
+            services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
+            {
+                //corsParams.Where(x => x != null).ToArray()
+                builder.AllowAnyOrigin()
+                       .AllowAnyHeader()
+                       .AllowAnyMethod();
+                                
+                       //.AllowAnyMethod()
+                       //.AllowAnyHeader()
+                       //.AllowCredentials()
+            }));
 
             services.AddApiVersioning(o =>
             {
@@ -81,8 +95,8 @@ namespace Prt.Graphit.Api
                 c.SwaggerEndpoint("./v1/swagger.json", "SP.Protocol.API V1");
             });
 
-           // app.UseHttpsRedirection();
-
+            // app.UseHttpsRedirection();
+            app.UseCors("CorsPolicy");
             app.UseRouting();
 
             app.UseAuthorization();
