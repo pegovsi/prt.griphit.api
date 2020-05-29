@@ -2,8 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Prt.Graphit.Application.Common.Interfaces;
 using Prt.Graphit.Application.Common.Response;
-using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,14 +25,14 @@ namespace Prt.Graphit.Application.Sku.Commands.CreateSku
 
                 if (group is null)
                 {
-                    var skugroup = new Domain.AggregatesModel.Sku.Entities.SkuGroup
+                    var skuGroup = new Domain.AggregatesModel.Sku.Entities.SkuGroup
                     (
                         id: request.SkuGroup.Id,
                         name: request.SkuGroup.Name,
                         parentId: request.SkuGroup.ParentId
                     );
                     await _appDbContext.Set<Domain.AggregatesModel.Sku.Entities.SkuGroup>()
-                        .AddAsync(skugroup);
+                        .AddAsync(skuGroup, cancellationToken);
                     await _appDbContext.SaveChangesAsync(cancellationToken);
                 }
             }
@@ -43,13 +41,13 @@ namespace Prt.Graphit.Application.Sku.Commands.CreateSku
                 .FirstOrDefaultAsync(x => x.Id == request.SkuType.Id, cancellationToken);
             if (type is null)
             {
-                var skutype = new Domain.AggregatesModel.Sku.Entities.SkuType
+                var skuType = new Domain.AggregatesModel.Sku.Entities.SkuType
                 (
                     id: request.SkuType.Id,
                     name: request.SkuType.Name
                 );
                 await _appDbContext.Set<Domain.AggregatesModel.Sku.Entities.SkuType>()
-                    .AddAsync(skutype);
+                    .AddAsync(skuType, cancellationToken);
                 await _appDbContext.SaveChangesAsync(cancellationToken);
             }
             ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -17,13 +17,13 @@ namespace Prt.Graphit.Application.Sku.Queries
 
         public async override Task<SkuDto> Handle(GetSkuByIdQuery request, CancellationToken cancellationToken)
         {
-            var model = await ContextDb.Set<Domain.AggregatesModel.Sku.Entities.Sku>()
+            var sku = await ContextDb.Set<Domain.AggregatesModel.Sku.Entities.Sku>()
                 .Include(x=>x.SkuGroup)
                 .Include(x => x.SkuType)
                 .Include(x => x.Units)
-                .FirstOrDefaultAsync(x => x.Id == request.SkuId);
+                .FirstOrDefaultAsync(x => x.Id == request.SkuId, cancellationToken: cancellationToken);
 
-            return AutoMapper.Map<SkuDto>(model);
+            return AutoMapper.Map<SkuDto>(sku);
         }
     }
 }

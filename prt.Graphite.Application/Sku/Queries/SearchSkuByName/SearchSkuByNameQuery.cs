@@ -5,7 +5,7 @@ namespace Prt.Graphit.Application.Sku.Queries.SearchSkuByName
 {
     public class SearchSkuByNameQuery : IRequest<SkuDto[]>
     {
-        public string SkuNameSearch { get; private set; }
+        public string SkuNameSearch { get; }
 
         public SearchSkuByNameQuery(string skuNameSearch)
         {

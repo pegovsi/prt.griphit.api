@@ -20,18 +20,18 @@ namespace Prt.Graphit.Application.City.Commands.CreateCity
         {
             var city = await _appDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.City>()
                 .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
-            if (city is null)
-            {
-                city = new Domain.AggregatesModel.Vehicle.Entities.City
-                (
-                    id: request.Id,
-                    name: request.Name,
-                    garrisonId: request.GarrisonId
-                );
-                await _appDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.City>()
-                    .AddAsync(city, cancellationToken);
-                await _appDbContext.SaveChangesAsync(cancellationToken);
-            }
+            
+            if (!(city is null)) return ResultHelper.Success(true);
+            
+            city = new Domain.AggregatesModel.Vehicle.Entities.City
+            (
+                id: request.Id,
+                name: request.Name,
+                garrisonId: request.GarrisonId
+            );
+            await _appDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.City>()
+                .AddAsync(city, cancellationToken);
+            await _appDbContext.SaveChangesAsync(cancellationToken);
             return ResultHelper.Success(true);
         }
     }
