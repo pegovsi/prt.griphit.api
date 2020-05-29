@@ -5,9 +5,12 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.4" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.6.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Prt.Graphit.Common\Prt.Graphit.Common.csproj" />
+    <ProjectReference Include="..\Prt.Graphit.Identity.Common\Prt.Graphit.Identity.Common.csproj" />
+    <ProjectReference Include="..\prt.graphit.sku.api\Prt.Graphit.Identity.Common\Prt.Graphit.Identity.Common.csproj" />
     <ProjectReference Include="..\prt.Graphite.Application\Prt.Graphit.Application.csproj" />
   </ItemGroup>
 

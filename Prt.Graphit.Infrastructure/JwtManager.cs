@@ -5,12 +5,13 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using Prt.Graphit.Identity.Common;
 using Prt.Graphit.Identity.Common.Models;
+using IJwtManager = Prt.Graphit.Application.Interfaces.IJwtManager;
 
 namespace Prt.Graphit.Infrastructure
 {
     public class JwtManager : IJwtManager
     {
-        public SessionUser GenerationToken(ClaimsIdentity identity, ApplicationUser account)
+        public SessionUser GenerationToken(ClaimsIdentity claim, ApplicationUser account)
         {
             var now = DateTime.UtcNow;
 
@@ -18,7 +19,7 @@ namespace Prt.Graphit.Infrastructure
                 issuer: AuthorizationOptions.ISSUER,
                 audience: AuthorizationOptions.AUDIENCE,
                 notBefore: now,
-                claims: identity.Claims,
+                claims: claim.Claims,
                 expires: now.Add(TimeSpan.FromMinutes(AuthorizationOptions.LIFETIME)),
                 signingCredentials: new SigningCredentials(AuthorizationOptions.Create(AuthorizationOptions.KEY),
                     SecurityAlgorithms.HmacSha256));
@@ -29,7 +30,7 @@ namespace Prt.Graphit.Infrastructure
             jwt.Payload["first_name"] = account.FirstName;
             jwt.Payload["middle_name"] = account.MiddleName;
             jwt.Payload["last_name"] = account.LastName;
-            jwt.Payload["roles"] = account.Roles.Select(x => x.Mnemonic).ToArray();
+            //jwt.Payload["roles"] = account.Roles.Select(x => x.Mnemonic).ToArray();
             
 
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
@@ -40,7 +41,7 @@ namespace Prt.Graphit.Infrastructure
                 Duration = AuthorizationOptions.LIFETIME,
                 Token = encodedJwt,
                 UserId = account.AccountId.ToString(),
-                User = identity.Name
+                User = claim.Name
             };
         }
     }

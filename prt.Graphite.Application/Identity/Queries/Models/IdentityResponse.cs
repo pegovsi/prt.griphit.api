@@ -1,4 +1,7 @@
-﻿$HEADER$namespace $NAMESPACE$
+﻿namespace Prt.Graphit.Application.Identity.Queries.Models
 {
-  public class $CLASS$ {$END$}
+    public class IdentityResponse
+    {
+        public string Token { get; set; }
+    }
 }

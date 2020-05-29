@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Prt.Graphit.Application.Common.Interfaces;
+using Prt.Graphit.Domain.AggregatesModel.Account.Entities;
 using Prt.Graphit.Domain.AggregatesModel.Sku.Entities;
 using Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities;
 
@@ -12,6 +13,7 @@ namespace Prt.Graphit.Persistence
         {
         }
 
+        public DbSet<Account> Accounts { get; set; }
 
         public DbSet<Sku> Skus { get; set; }
         public DbSet<SkuGroup> SkuGroups { get; set; }

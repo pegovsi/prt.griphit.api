@@ -13,7 +13,11 @@ using Prt.Graphit.Application.Common.Interfaces;
 using Prt.Graphit.Api.Extensions;
 using System.Linq;
 using System.Reflection;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Prt.Graphit.Application.Interfaces;
+using Prt.Graphit.Identity.Common;
+using Prt.Graphit.Infrastructure;
 
 namespace Prt.Graphit.Api
 {
@@ -46,6 +50,27 @@ namespace Prt.Graphit.Api
                     .AddAutoMapper(_assemblyApplication)
                     .AddApplication();
 
+            services.AddTransient<IJwtManager, JwtManager>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidIssuer = AuthorizationOptions.ISSUER,
+
+                        ValidateAudience = true,
+                        ValidAudience = AuthorizationOptions.AUDIENCE,
+
+                        ValidateLifetime = true,
+
+                        IssuerSigningKey = AuthorizationOptions.Create(AuthorizationOptions.KEY),
+                        ValidateIssuerSigningKey = true
+                    };
+                });
+            
             //var corsParams = Configuration.GetSection("Cors").Get<List<string>>();
             services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
             {
@@ -99,6 +124,7 @@ namespace Prt.Graphit.Api
             app.UseCors("CorsPolicy");
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -19,7 +19,7 @@ namespace Prt.Graphit.Identity.Common.Models
         public bool IsConfirm { get; set; }
         public ICollection<ApplicationRole> Roles { get; set; }
     }
-
+    
     public class ApplicationRole
     {
         public int RoleId { get; set; }

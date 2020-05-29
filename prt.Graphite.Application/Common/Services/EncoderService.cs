@@ -3,7 +3,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Prt.Graphit.Infrastructure
+namespace Prt.Graphit.Application.Common.Services
 {
     public class EncoderService
     {

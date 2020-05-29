@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -12,15 +11,14 @@ namespace Prt.Graphit.Api.Extensions
         public static IServiceCollection AddLogging(this IServiceCollection services, IConfiguration configuration)
         {
             var serviceName = Assembly.GetExecutingAssembly().GetName().Name;
-            var indexName = serviceName.ToLower().Replace('.', '-');
-            var indexFormat = indexName + "-{0:yyyy.MM.dd}";
+            var indexName = serviceName?.ToLower().Replace('.', '-');
 
             services.AddLogging(loggingBuilder =>
               loggingBuilder.AddSerilog(dispose: true));
 
             var logger = new LoggerConfiguration()
                       .ReadFrom.Configuration(configuration)
-                      .Enrich.WithProperty("MicroserviceName", serviceName, true)
+                      .Enrich.WithProperty("MicroserviceName", indexName, true)
                       .Enrich.FromLogContext()
                       .WriteTo.Console()
                       .CreateLogger();

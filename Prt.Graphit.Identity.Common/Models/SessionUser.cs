@@ -7,12 +7,15 @@ namespace Prt.Graphit.Identity.Common.Models
         /// <summary>
         /// Идентификатор пользователя
         /// </summary>
+        
         public string UserId { get; set; }
         public string User { get; set; }
         /// <summary>
         /// Время создания токена
         /// </summary>
+        
         public DateTime Date { get; set; }
+        
         public string Token { get; set; }
         /// <summary>
         /// Время жизни токена
