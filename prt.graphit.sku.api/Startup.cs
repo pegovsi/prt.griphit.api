@@ -81,7 +81,7 @@ namespace Prt.Graphit.Api
                 c.SwaggerEndpoint("./v1/swagger.json", "SP.Protocol.API V1");
             });
 
-            app.UseHttpsRedirection();
+           // app.UseHttpsRedirection();
 
             app.UseRouting();
 

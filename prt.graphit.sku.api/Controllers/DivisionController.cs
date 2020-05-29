@@ -5,20 +5,16 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Prt.Graphit.Api.Common.Api;
 using Prt.Graphit.Application.Common.Response;
 using Prt.Graphit.Application.Division.Commands.CreateDivision;
 
 namespace Prt.Graphit.Api.Controllers
 {
-    [ApiController]
     [Route("api/v{version:apiVersion}/division")]
-    // [ApiVersion(VersionController.Version10)]
+    [ApiVersion(VersionController.Version1_0)]
     public class DivisionController : BaseController
     {
-        //[HttpGet, Route("{id}")]
-        //public async Task<ActionResult<SkuDto>> GetSkuById(Guid id)
-        //    => await Mediator.Send(new GetSkuByIdQuery(id));
-
         [HttpPost]
         public async Task<Result<bool>> CreateDivision(
             [FromBody] CreateDivisionCommand command, 

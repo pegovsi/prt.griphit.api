@@ -27,6 +27,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prt.Graphit.Infrastructure"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prt.Graphit.Persistence", "..\Prt.Graphit.Persistence\Prt.Graphit.Persistence.csproj", "{55DDE80C-DB14-4399-A2CA-01FD1201281C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{4E73B649-6E49-48D5-AA31-FC8FD1728D99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prt.Graphit.Api.Common", "..\Prt.Graphit.Api.Common\Prt.Graphit.Api.Common.csproj", "{37DAF24A-1E3C-48F8-85EC-7EDD8B499D58}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +61,10 @@ Global
 		{55DDE80C-DB14-4399-A2CA-01FD1201281C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55DDE80C-DB14-4399-A2CA-01FD1201281C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55DDE80C-DB14-4399-A2CA-01FD1201281C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37DAF24A-1E3C-48F8-85EC-7EDD8B499D58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37DAF24A-1E3C-48F8-85EC-7EDD8B499D58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37DAF24A-1E3C-48F8-85EC-7EDD8B499D58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37DAF24A-1E3C-48F8-85EC-7EDD8B499D58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +79,7 @@ Global
 		{17781BCE-1DB3-48C7-B521-5721A1FAF1AE} = {EFAC401C-DC57-45F7-9DFC-9145962C5CD0}
 		{8BE77A5A-E68D-41E7-BC8B-60A07E4D0CBE} = {5F687E1E-8207-452B-89E4-835153FE7BAA}
 		{55DDE80C-DB14-4399-A2CA-01FD1201281C} = {5F687E1E-8207-452B-89E4-835153FE7BAA}
+		{37DAF24A-1E3C-48F8-85EC-7EDD8B499D58} = {4E73B649-6E49-48D5-AA31-FC8FD1728D99}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F50C1E13-CEC2-4E79-B1D4-B5EB01C02997}

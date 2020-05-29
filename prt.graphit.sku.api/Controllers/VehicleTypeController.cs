@@ -5,14 +5,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Prt.Graphit.Api.Common.Api;
 using Prt.Graphit.Application.Common.Response;
 using Prt.Graphit.Application.VehicleType.Commands.CreateVehicleType;
 
 namespace Prt.Graphit.Api.Controllers
 {
-    [ApiController]
     [Route("api/v{version:apiVersion}/vehicle-type")]
-    // [ApiVersion(VersionController.Version10)]
+    [ApiVersion(VersionController.Version1_0)]
     public class VehicleTypeController : BaseController
     {
         [HttpPost]

@@ -5,14 +5,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Prt.Graphit.Api.Common.Api;
 using Prt.Graphit.Application.City.Commands.CreateCity;
 using Prt.Graphit.Application.Common.Response;
 
 namespace Prt.Graphit.Api.Controllers
 {
-    [ApiController]
     [Route("api/v{version:apiVersion}/city")]
-    // [ApiVersion(VersionController.Version10)]
+    [ApiVersion(VersionController.Version1_0)]
     public class CityController : BaseController
     {
         [HttpPost]

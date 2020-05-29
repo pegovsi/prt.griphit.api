@@ -5,14 +5,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Prt.Graphit.Api.Common.Api;
 using Prt.Graphit.Application.Brigade.Commands.CreateBrigade;
 using Prt.Graphit.Application.Common.Response;
 
 namespace Prt.Graphit.Api.Controllers
 {
-    [ApiController]
     [Route("api/v{version:apiVersion}/brigade")]
-    // [ApiVersion(VersionController.Version10)]
+    [ApiVersion(VersionController.Version1_0)]
     public class BrigadeController : BaseController
     {
         [HttpPost]
