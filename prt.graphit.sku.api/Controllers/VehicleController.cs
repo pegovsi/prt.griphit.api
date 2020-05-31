@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Prt.Graphit.Api.Common.Api;
+using Prt.Graphit.Application.Common.Paging;
 using Prt.Graphit.Application.Common.Response;
 using Prt.Graphit.Application.Vehicle.Commands.CreateVehicle;
 using Prt.Graphit.Application.Vehicle.Queries.GetVehicleById;
+using Prt.Graphit.Application.Vehicle.Queries.GetVehiclesPage;
 using Prt.Graphit.Application.Vehicle.Queries.Models;
 using Prt.Graphit.Application.Vehicle.Queries.SearchVehicleByName;
 
@@ -35,5 +34,11 @@ namespace Prt.Graphit.Api.Controllers
             [FromBody]SearchVehicleByNameQuery query,
             CancellationToken token)
                 => await Mediator.Send(query, token);
+
+        [HttpPost, Route("page")]
+        public async Task<ActionResult<VehiclesCollectionViewModel>> GetPage(
+            [FromBody] PageContext<VehiclePageFilter> context, CancellationToken token)
+            => await Mediator.Send(new GetVehiclesPageQuery(context), token);
+
     }
 }
