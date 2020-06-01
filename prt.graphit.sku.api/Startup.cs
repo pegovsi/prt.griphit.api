@@ -18,6 +18,7 @@ using Microsoft.IdentityModel.Tokens;
 using Prt.Graphit.Application.Interfaces;
 using Prt.Graphit.Identity.Common;
 using Prt.Graphit.Infrastructure;
+using Prt.Graphit.Api.Common.Settings.Models;
 
 namespace Prt.Graphit.Api
 {
@@ -70,6 +71,7 @@ namespace Prt.Graphit.Api
                         ValidateIssuerSigningKey = true
                     };
                 });
+
             
             //var corsParams = Configuration.GetSection("Cors").Get<List<string>>();
             services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
@@ -101,6 +103,15 @@ namespace Prt.Graphit.Api
                 c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
                 c.CustomSchemaIds(x => x.FullName);
                 c.EnableAnnotations();
+            });
+
+            services.Configure<MapCatalog>(opt =>
+            {
+                opt.Path = Configuration["MapCatalog:Path"];
+            });
+            services.Configure<OperationSystem>(opt =>
+            {
+                opt.Platform = System.Environment.OSVersion.Platform;
             });
         }
 

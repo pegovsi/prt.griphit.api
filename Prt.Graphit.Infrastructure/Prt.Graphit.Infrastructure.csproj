@@ -10,7 +10,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Prt.Graphit.Common\Prt.Graphit.Common.csproj" />
     <ProjectReference Include="..\Prt.Graphit.Identity.Common\Prt.Graphit.Identity.Common.csproj" />
-    <ProjectReference Include="..\prt.graphit.sku.api\Prt.Graphit.Identity.Common\Prt.Graphit.Identity.Common.csproj" />
     <ProjectReference Include="..\prt.Graphite.Application\Prt.Graphit.Application.csproj" />
   </ItemGroup>
 
