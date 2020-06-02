@@ -1,8 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Prt.Graphit.Application.Common.Interfaces;
 using Prt.Graphit.Domain.AggregatesModel.Account.Entities;
+using Prt.Graphit.Domain.AggregatesModel.EKPC.Entities;
+using Prt.Graphit.Domain.AggregatesModel.KVTMO.Entities;
+using Prt.Graphit.Domain.AggregatesModel.LeveManagement.Entities;
+using Prt.Graphit.Domain.AggregatesModel.MilitaryFormation.Entities;
+using Prt.Graphit.Domain.AggregatesModel.MilitaryPosition.Entities;
+using Prt.Graphit.Domain.AggregatesModel.MilitaryRank.Entities;
 using Prt.Graphit.Domain.AggregatesModel.Sku.Entities;
+using Prt.Graphit.Domain.AggregatesModel.TypesMilitaryOrder.Entities;
 using Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities;
+using Prt.Graphit.Domain.Enumerations;
 
 namespace Prt.Graphit.Persistence
 {
@@ -33,6 +41,18 @@ namespace Prt.Graphit.Persistence
         public DbSet<VehicleType> VehicleTypes { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
 
+        public DbSet<ActiveStatus> ActiveStatus { get; set; }
+        public DbSet<TypeStateServiceStatus> TypeStateServiceStatus { get; set; }
+
+
+        public DbSet<MilitaryRank> MilitaryRanks { get; set; }
+        public DbSet<MilitaryPosition> MilitaryPositions { get; set; }
+        public DbSet<EKPC> EKPCs { get; set; }
+        public DbSet<KVTMO> KVTMOs { get; set; }
+        public DbSet<LevelManagement> LevelManagements { get; set; }
+        public DbSet<TypesMilitaryOrder> TypesMilitaryOrders { get; set; }
+        public DbSet<MilitaryFormation> MilitaryFormations { get; set; }
+        public DbSet<AccountMilitaryPosition> AccountMilitaryPositions { get; set; }
 
         public DbContext DbContext => this;
 
