@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Prt.Graphit.Persistence;
@@ -9,15 +10,73 @@ using Prt.Graphit.Persistence;
 namespace Prt.Graphit.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class appDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200602085655_AccountAddEmail")]
+    partial class AccountAddEmail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.Account.Entities.Account", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("Deleted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<bool>("IsConfirm")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("MiddleName")
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email");
+
+                    b.HasIndex("Login");
+
+                    b.ToTable("Accounts");
+                });
 
             modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.Sku.Entities.Sku", b =>
                 {
@@ -527,7 +586,7 @@ namespace Prt.Graphit.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("BrigadeId")
+                    b.Property<Guid?>("BrigadeId")
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("ChassiId")
@@ -539,7 +598,7 @@ namespace Prt.Graphit.Persistence.Migrations
                     b.Property<Guid>("CityId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("ConditionId")
+                    b.Property<Guid?>("ConditionId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("Created")
@@ -557,8 +616,8 @@ namespace Prt.Graphit.Persistence.Migrations
                     b.Property<Guid>("GarrisonId")
                         .HasColumnType("uuid");
 
-                    b.Property<long?>("IsApproved")
-                        .HasColumnType("bigint");
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("boolean");
 
                     b.Property<Guid>("ManufacturerId")
                         .HasColumnType("uuid");
@@ -780,9 +839,7 @@ namespace Prt.Graphit.Persistence.Migrations
                 {
                     b.HasOne("Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities.Brigade", "Brigade")
                         .WithMany()
-                        .HasForeignKey("BrigadeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BrigadeId");
 
                     b.HasOne("Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities.Chassis", "Chassis")
                         .WithMany()
@@ -796,9 +853,7 @@ namespace Prt.Graphit.Persistence.Migrations
 
                     b.HasOne("Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities.Condition", "Condition")
                         .WithMany()
-                        .HasForeignKey("ConditionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ConditionId");
 
                     b.HasOne("Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities.Division", "Division")
                         .WithMany()
