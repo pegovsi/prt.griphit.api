@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Prt.Graphit.Api.Common.Api;
 using Prt.Graphit.Application.Common.Paging;
 using Prt.Graphit.Application.Common.Response;
+using Prt.Graphit.Application.Vehicle.Commands.AddVehiclePicture;
 using Prt.Graphit.Application.Vehicle.Commands.CreateVehicle;
 using Prt.Graphit.Application.Vehicle.Queries.GetVehicleById;
 using Prt.Graphit.Application.Vehicle.Queries.GetVehiclesPage;
@@ -16,7 +17,7 @@ namespace Prt.Graphit.Api.Controllers
 {
     [Route("api/v{version:apiVersion}/vehicles")]
     [ApiVersion(VersionController.Version1_0)]
-    [Authorize]
+    //[Authorize]
     public class VehicleController : BaseController
     {
         [HttpPost]
@@ -40,5 +41,10 @@ namespace Prt.Graphit.Api.Controllers
             [FromBody] PageContext<VehiclePageFilter> context, CancellationToken token)
             => await Mediator.Send(new GetVehiclesPageQuery(context), token);
 
+        
+        [HttpPost, Route("picture")]
+        public async Task<Result<bool>> AddPicture(
+            [FromBody] AddVehiclePictureCommand command, CancellationToken token)
+            => await Mediator.Send(command, token);
     }
 }

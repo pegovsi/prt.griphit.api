@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Prt.Graphit.Api.Common.Api;
 using Prt.Graphit.Application.Common.Response;
 using Prt.Graphit.Application.Sku.Commands.CreateSku;
@@ -13,6 +14,7 @@ namespace Prt.Graphit.Api.Controllers
 {
     [Route("api/v{version:apiVersion}/sku")]
     [ApiVersion(VersionController.Version1_0)]
+    //[Authorize]
     public class SkuController : BaseController
     {
         [HttpGet, Route("{id}")]

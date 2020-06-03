@@ -14,6 +14,7 @@ namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
                 throw new ArgumentNullException($"Незаполнено обязательное поле {nameof(name)}");
 
             Id = Guid.NewGuid();
+            IsNew = true;
             Name = name;
         }
 
@@ -30,6 +31,7 @@ namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
                 throw new ArgumentNullException($"Незаполнено обязательное поле {nameof(chassiId)}");
 
             Id = Guid.NewGuid();
+            IsNew = true;
             Name = name;
             ShortName = shortName;
             VehicleModelTypeId = vehicleModelTypeId;
@@ -48,6 +50,7 @@ namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
                 throw new ArgumentNullException($"Незаполнено обязательное поле {nameof(chassiId)}");
 
             Id = id;
+            IsNew = true;
             Name = name;
             ShortName = shortName;
             VehicleModelTypeId = vehicleModelTypeId;

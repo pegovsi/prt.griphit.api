@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Prt.Graphit.Persistence;
@@ -10,16 +9,541 @@ using Prt.Graphit.Persistence;
 namespace Prt.Graphit.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200515134940_vehicle-init2")]
-    partial class vehicleinit2
+    partial class AppDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.Account.Entities.Account", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("Deleted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<bool>("IsConfirm")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("MiddleName")
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<Guid?>("MilitaryFormationId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("MilitaryRankId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email");
+
+                    b.HasIndex("Login");
+
+                    b.HasIndex("MilitaryFormationId");
+
+                    b.HasIndex("MilitaryRankId");
+
+                    b.ToTable("Accounts");
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.Account.Entities.AccountMilitaryPosition", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AccountId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("Deleted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<Guid>("MilitaryPositionId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.HasIndex("MilitaryPositionId", "AccountId");
+
+                    b.ToTable("AccountMilitaryPosition");
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.Crew.Entities.Crew", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("Deleted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<Guid>("MilitaryFormationId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("OrderDateFinish")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("OrderDateStart")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("OrderNumber")
+                        .HasColumnType("character varying(16)")
+                        .HasMaxLength(16);
+
+                    b.Property<Guid>("TypesMilitaryOrderId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("VehicleId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MilitaryFormationId");
+
+                    b.HasIndex("TypesMilitaryOrderId");
+
+                    b.HasIndex("VehicleId");
+
+                    b.ToTable("Crew");
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.Crew.Entities.CrewHistory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("CrewId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("Deleted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("_content")
+                        .IsRequired()
+                        .HasColumnName("Content")
+                        .HasColumnType("jsonb");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CrewHistory");
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.Crew.Entities.CrewPosition", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("AccountId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<Guid?>("CrewId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("Deleted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<Guid>("MilitaryPositionId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.HasIndex("CrewId");
+
+                    b.HasIndex("MilitaryPositionId");
+
+                    b.ToTable("CrewPosition");
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.EKPC.Entities.EKPC", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("CodeEKPC")
+                        .IsRequired()
+                        .HasColumnType("varchar(4)")
+                        .HasMaxLength(4);
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("Deleted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<Guid?>("EKPCParentId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<Guid?>("ParentId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("_activeStatusId")
+                        .HasColumnName("ActiveStatusId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EKPCParentId");
+
+                    b.HasIndex("Name");
+
+                    b.HasIndex("_activeStatusId");
+
+                    b.ToTable("EKPC");
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.KVTMO.Entities.KVTMO", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("CodeKVTMO")
+                        .IsRequired()
+                        .HasColumnType("varchar(16)")
+                        .HasMaxLength(16);
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("Deleted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<int>("_activeStatusId")
+                        .HasColumnName("ActiveStatusId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name");
+
+                    b.HasIndex("_activeStatusId");
+
+                    b.ToTable("KVTMO");
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.LeveManagement.Entities.LevelManagement", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("varchar(160)")
+                        .HasMaxLength(160);
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("Deleted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<bool>("Independent")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsVCH")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<int>("_activeStatusId")
+                        .HasColumnName("ActiveStatusId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name");
+
+                    b.HasIndex("_activeStatusId");
+
+                    b.ToTable("LevelManagement");
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.MilitaryFormation.Entities.MilitaryFormation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("Deleted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<Guid?>("LevelManagementId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("MilitaryNameUnit")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<Guid?>("ParentId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("ShortName")
+                        .IsRequired()
+                        .HasColumnType("varchar(16)")
+                        .HasMaxLength(16);
+
+                    b.Property<int>("_activeStatusId")
+                        .HasColumnName("ActiveStatusId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LevelManagementId");
+
+                    b.HasIndex("Name");
+
+                    b.HasIndex("ParentId");
+
+                    b.HasIndex("_activeStatusId");
+
+                    b.ToTable("MilitaryFormation");
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.MilitaryPosition.Entities.MilitaryPosition", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("Deleted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("ShortName")
+                        .IsRequired()
+                        .HasColumnType("varchar(16)")
+                        .HasMaxLength(16);
+
+                    b.Property<int>("_activeStatusId")
+                        .HasColumnName("ActiveStatusId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("_typeStateServiceStatusId")
+                        .HasColumnName("TypeStateServiceStatusId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name");
+
+                    b.HasIndex("_activeStatusId");
+
+                    b.HasIndex("_typeStateServiceStatusId");
+
+                    b.ToTable("MilitaryPosition");
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.MilitaryRank.Entities.MilitaryRank", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("Deleted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("ShortName")
+                        .IsRequired()
+                        .HasColumnType("varchar(16)")
+                        .HasMaxLength(16);
+
+                    b.Property<int>("_activeStatusId")
+                        .HasColumnName("ActiveStatusId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name");
+
+                    b.HasIndex("_activeStatusId");
+
+                    b.ToTable("MilitaryRank");
+                });
 
             modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.Sku.Entities.Sku", b =>
                 {
@@ -229,6 +753,39 @@ namespace Prt.Graphit.Persistence.Migrations
                     b.HasIndex("SkuId");
 
                     b.ToTable("Unit");
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.TypesMilitaryOrder.Entities.TypesMilitaryOrder", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("Deleted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name");
+
+                    b.ToTable("TypesMilitaryOrder");
                 });
 
             modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities.Brigade", b =>
@@ -529,7 +1086,7 @@ namespace Prt.Graphit.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("BrigadeId")
+                    b.Property<Guid?>("BrigadeId")
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("ChassiId")
@@ -541,7 +1098,7 @@ namespace Prt.Graphit.Persistence.Migrations
                     b.Property<Guid>("CityId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("ConditionId")
+                    b.Property<Guid?>("ConditionId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("Created")
@@ -685,7 +1242,7 @@ namespace Prt.Graphit.Persistence.Migrations
                         .HasColumnType("varchar(255)")
                         .HasMaxLength(255);
 
-                    b.Property<Guid>("VehicleModelId")
+                    b.Property<Guid>("VehicleModelTypeId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
@@ -693,6 +1250,46 @@ namespace Prt.Graphit.Persistence.Migrations
                     b.HasIndex("Name");
 
                     b.ToTable("VehicleModel");
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities.VehiclePicture", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("Deleted")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Uri")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("UriPreview")
+                        .HasColumnType("varchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<Guid>("VehicleId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VehicleId");
+
+                    b.ToTable("VehiclePicture");
                 });
 
             modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities.VehicleType", b =>
@@ -734,6 +1331,174 @@ namespace Prt.Graphit.Persistence.Migrations
                     b.HasIndex("Name");
 
                     b.ToTable("VehicleType");
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.Enumerations.ActiveStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("integer")
+                        .HasDefaultValue(1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ActiveStatus");
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.Enumerations.TypeStateServiceStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("integer")
+                        .HasDefaultValue(1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TypeStateServiceStatus");
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.Account.Entities.Account", b =>
+                {
+                    b.HasOne("Prt.Graphit.Domain.AggregatesModel.MilitaryFormation.Entities.MilitaryFormation", "MilitaryFormation")
+                        .WithMany()
+                        .HasForeignKey("MilitaryFormationId");
+
+                    b.HasOne("Prt.Graphit.Domain.AggregatesModel.MilitaryRank.Entities.MilitaryRank", "MilitaryRank")
+                        .WithMany()
+                        .HasForeignKey("MilitaryRankId");
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.Account.Entities.AccountMilitaryPosition", b =>
+                {
+                    b.HasOne("Prt.Graphit.Domain.AggregatesModel.Account.Entities.Account", null)
+                        .WithMany("AccountMilitaryPositions")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Prt.Graphit.Domain.AggregatesModel.MilitaryPosition.Entities.MilitaryPosition", "MilitaryPosition")
+                        .WithMany()
+                        .HasForeignKey("MilitaryPositionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.Crew.Entities.Crew", b =>
+                {
+                    b.HasOne("Prt.Graphit.Domain.AggregatesModel.MilitaryFormation.Entities.MilitaryFormation", "MilitaryFormation")
+                        .WithMany()
+                        .HasForeignKey("MilitaryFormationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Prt.Graphit.Domain.AggregatesModel.TypesMilitaryOrder.Entities.TypesMilitaryOrder", "TypesMilitaryOrder")
+                        .WithMany()
+                        .HasForeignKey("TypesMilitaryOrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities.Vehicle", "Vehicle")
+                        .WithMany()
+                        .HasForeignKey("VehicleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.Crew.Entities.CrewPosition", b =>
+                {
+                    b.HasOne("Prt.Graphit.Domain.AggregatesModel.Account.Entities.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("AccountId");
+
+                    b.HasOne("Prt.Graphit.Domain.AggregatesModel.Crew.Entities.Crew", null)
+                        .WithMany("CrewPositions")
+                        .HasForeignKey("CrewId");
+
+                    b.HasOne("Prt.Graphit.Domain.AggregatesModel.MilitaryPosition.Entities.MilitaryPosition", "MilitaryPosition")
+                        .WithMany()
+                        .HasForeignKey("MilitaryPositionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.EKPC.Entities.EKPC", b =>
+                {
+                    b.HasOne("Prt.Graphit.Domain.AggregatesModel.EKPC.Entities.EKPC", "EKPCParent")
+                        .WithMany()
+                        .HasForeignKey("EKPCParentId");
+
+                    b.HasOne("Prt.Graphit.Domain.Enumerations.ActiveStatus", "ActiveStatus")
+                        .WithMany()
+                        .HasForeignKey("_activeStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.KVTMO.Entities.KVTMO", b =>
+                {
+                    b.HasOne("Prt.Graphit.Domain.Enumerations.ActiveStatus", "ActiveStatus")
+                        .WithMany()
+                        .HasForeignKey("_activeStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.LeveManagement.Entities.LevelManagement", b =>
+                {
+                    b.HasOne("Prt.Graphit.Domain.Enumerations.ActiveStatus", "ActiveStatus")
+                        .WithMany()
+                        .HasForeignKey("_activeStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.MilitaryFormation.Entities.MilitaryFormation", b =>
+                {
+                    b.HasOne("Prt.Graphit.Domain.AggregatesModel.LeveManagement.Entities.LevelManagement", "LevelManagement")
+                        .WithMany()
+                        .HasForeignKey("LevelManagementId");
+
+                    b.HasOne("Prt.Graphit.Domain.AggregatesModel.MilitaryFormation.Entities.MilitaryFormation", "Parent")
+                        .WithMany()
+                        .HasForeignKey("ParentId");
+
+                    b.HasOne("Prt.Graphit.Domain.Enumerations.ActiveStatus", "ActiveStatus")
+                        .WithMany()
+                        .HasForeignKey("_activeStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.MilitaryPosition.Entities.MilitaryPosition", b =>
+                {
+                    b.HasOne("Prt.Graphit.Domain.Enumerations.ActiveStatus", "ActiveStatus")
+                        .WithMany()
+                        .HasForeignKey("_activeStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Prt.Graphit.Domain.Enumerations.TypeStateServiceStatus", "TypeStateServiceStatus")
+                        .WithMany()
+                        .HasForeignKey("_typeStateServiceStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.MilitaryRank.Entities.MilitaryRank", b =>
+                {
+                    b.HasOne("Prt.Graphit.Domain.Enumerations.ActiveStatus", "ActiveStatus")
+                        .WithMany()
+                        .HasForeignKey("_activeStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.Sku.Entities.Sku", b =>
@@ -782,9 +1547,7 @@ namespace Prt.Graphit.Persistence.Migrations
                 {
                     b.HasOne("Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities.Brigade", "Brigade")
                         .WithMany()
-                        .HasForeignKey("BrigadeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BrigadeId");
 
                     b.HasOne("Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities.Chassis", "Chassis")
                         .WithMany()
@@ -798,9 +1561,7 @@ namespace Prt.Graphit.Persistence.Migrations
 
                     b.HasOne("Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities.Condition", "Condition")
                         .WithMany()
-                        .HasForeignKey("ConditionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ConditionId");
 
                     b.HasOne("Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities.Division", "Division")
                         .WithMany()
@@ -835,6 +1596,15 @@ namespace Prt.Graphit.Persistence.Migrations
                     b.HasOne("Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities.VehicleType", "VehicleType")
                         .WithMany()
                         .HasForeignKey("VehicleTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities.VehiclePicture", b =>
+                {
+                    b.HasOne("Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities.Vehicle", null)
+                        .WithMany("VehiclePictures")
+                        .HasForeignKey("VehicleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -42,6 +42,10 @@ namespace Prt.Graphit.Persistence.Configurations
                 .FindNavigation(nameof(Account.AccountMilitaryPositions));
             navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
 
+            builder
+                .HasMany(e => e.AccountMilitaryPositions)
+                .WithOne();
+
             builder.HasIndex(e => e.Login);
             builder.HasIndex(e => e.Email);
         }

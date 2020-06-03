@@ -11,9 +11,10 @@ namespace Prt.Graphit.Api.Controllers
     [ApiVersion(VersionController.Version1_0)]
     public class IdentityController : BaseController
     {
-        public async Task<ActionResult<IdentityResponse>> Auth(AuthenticatedQuery query, CancellationToken toke)
+        public async Task<ActionResult<IdentityResponse>> Auth(
+            AuthenticatedQuery query, CancellationToken token)
         {
-            var result = await Mediator.Send(query, toke);
+            var result = await Mediator.Send(query, token);
             if (result.Value is null)
                 return new UnauthorizedObjectResult(result.Errors);
             

@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Prt.Graphit.Application.Common.Interfaces;
 using Prt.Graphit.Domain.AggregatesModel.Account.Entities;
+using Prt.Graphit.Domain.AggregatesModel.Crew.Entities;
 using Prt.Graphit.Domain.AggregatesModel.EKPC.Entities;
 using Prt.Graphit.Domain.AggregatesModel.KVTMO.Entities;
 using Prt.Graphit.Domain.AggregatesModel.LeveManagement.Entities;
@@ -10,7 +12,11 @@ using Prt.Graphit.Domain.AggregatesModel.MilitaryRank.Entities;
 using Prt.Graphit.Domain.AggregatesModel.Sku.Entities;
 using Prt.Graphit.Domain.AggregatesModel.TypesMilitaryOrder.Entities;
 using Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities;
+using Prt.Graphit.Domain.Common;
 using Prt.Graphit.Domain.Enumerations;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Prt.Graphit.Persistence
 {
@@ -40,6 +46,7 @@ namespace Prt.Graphit.Persistence
         public DbSet<VehicleModel> VehicleModels { get; set; }
         public DbSet<VehicleType> VehicleTypes { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<VehiclePicture> VehiclePictures { get; set; }
 
         public DbSet<ActiveStatus> ActiveStatus { get; set; }
         public DbSet<TypeStateServiceStatus> TypeStateServiceStatus { get; set; }
@@ -53,12 +60,55 @@ namespace Prt.Graphit.Persistence
         public DbSet<TypesMilitaryOrder> TypesMilitaryOrders { get; set; }
         public DbSet<MilitaryFormation> MilitaryFormations { get; set; }
         public DbSet<AccountMilitaryPosition> AccountMilitaryPositions { get; set; }
+        public DbSet<Crew> Crews { get; set; }
+        public DbSet<CrewPosition> CrewPositions { get; set; }
+        public DbSet<CrewHistory> CrewHistorys { get; set; }
 
         public DbContext DbContext => this;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+        }
+
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            //var currentUser = _currentUserService.GetCurrentUser();
+            var dateTime = DateTime.Now;
+            foreach (var entry in ChangeTracker.Entries<Entity>())
+            {
+                UpdateState(entry);
+
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                       // entry.Entity.CreatedBy = currentUser.Id.ToString();
+                        entry.Entity.Created = dateTime;
+                        break;
+                    case EntityState.Modified:
+                       // entry.Entity.ModifiedBy = currentUser.Id.ToString();
+                        entry.Entity.Modified = dateTime;
+                        break;
+                }
+            }
+
+            var result = await base.SaveChangesAsync(cancellationToken);
+
+            //// Не посылаем события во время тестов
+            //if (Database.IsNpgsql())
+            //{
+            //    await DispatchDomainEventsAsync();
+            //}
+
+            return result;
+        }
+
+        private static void UpdateState(EntityEntry<Entity> entry)
+        {
+            if (entry.Entity.IsNew)
+            {
+                entry.State = EntityState.Added;
+            }
         }
     }
 }

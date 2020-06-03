@@ -35,7 +35,12 @@ namespace Prt.Graphit.Persistence.Configurations
 
             builder.Property(e => e.Responsible)
                .HasMaxLength(255)
-               .HasColumnType("varchar(255)");
+               .HasColumnType("varchar(255)");            
+
+            var navigation = builder
+                .Metadata
+                .FindNavigation(nameof(Vehicle.VehiclePictures));
+            navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
 
             builder.HasIndex(e => e.Name);
         }

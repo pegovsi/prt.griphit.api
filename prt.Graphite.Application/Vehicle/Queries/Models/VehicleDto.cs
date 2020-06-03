@@ -46,5 +46,6 @@ namespace Prt.Graphit.Application.Vehicle.Queries.Models
         public string Responsible { get; private set; }
         public DateTime ReadoutDate { get; private set; }
         public DateTime StartupDate { get; private set; }
+        public IEnumerable<VehiclePictureDto> VehiclePictures { get; private set; }
     }
 }

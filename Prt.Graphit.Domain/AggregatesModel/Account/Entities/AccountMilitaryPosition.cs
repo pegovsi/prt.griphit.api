@@ -6,7 +6,7 @@ namespace Prt.Graphit.Domain.AggregatesModel.Account.Entities
     /// <summary>
     /// Должности пользователя
     /// </summary>
-    public class AccountMilitaryPosition : Entity, IAggregateRoot
+    public class AccountMilitaryPosition : Entity
     {
         protected AccountMilitaryPosition() { }
 

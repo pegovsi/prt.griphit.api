@@ -8,6 +8,9 @@ namespace Prt.Graphit.Domain.Common
 {
     public abstract class Entity
     {
+        [NotMapped]
+        [JsonIgnore]
+        public bool IsNew { get; set; }
         public virtual Guid Id { get; protected set; }
         public string CreatedBy { get; set; }
 

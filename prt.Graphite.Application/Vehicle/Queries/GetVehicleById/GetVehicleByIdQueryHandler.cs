@@ -35,6 +35,7 @@ namespace Prt.Graphit.Application.Vehicle.Queries.GetVehicleById
                 .Include(x => x.Subdivision)
                 .Include(x=>x.Brigade)
                 .Include(x=>x.Condition)
+                .Include(x=>x.VehiclePictures)
                 .SingleOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
             return _mapper.Map<VehicleDto>(model);

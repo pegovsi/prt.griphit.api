@@ -37,6 +37,9 @@ namespace Prt.Graphit.Application.Common.MapperProfiles
             CreateMap<Domain.AggregatesModel.Vehicle.Entities.Subdivision, SubdivisionDto>();
             CreateMap<Domain.AggregatesModel.Vehicle.Entities.Brigade, BrigadeDto>();
             CreateMap<Domain.AggregatesModel.Vehicle.Entities.Condition, ConditionDto>();
+            CreateMap<Domain.AggregatesModel.Vehicle.Entities.VehiclePicture, VehiclePictureDto>()
+                .ForMember(x => x.Uri, opt => opt.MapFrom(e => $"http://localhost:5000/api/v1/images{e.Uri}"))
+                .ForMember(x => x.UriPreview, opt => opt.MapFrom(e => $"http://localhost:5000/api/v1/images{e.UriPreview}"));
         }
     }
 }

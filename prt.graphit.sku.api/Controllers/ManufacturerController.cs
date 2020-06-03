@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Prt.Graphit.Api.Common.Api;
@@ -13,6 +14,7 @@ namespace Prt.Graphit.Api.Controllers
 {
     [Route("api/v{version:apiVersion}/manufacturer")]
     [ApiVersion(VersionController.Version1_0)]
+    //[Authorize]
     public class ManufacturerController : BaseController
     {
         [HttpPost]

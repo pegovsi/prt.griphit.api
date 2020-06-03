@@ -109,6 +109,10 @@ namespace Prt.Graphit.Api
             {
                 opt.Path = Configuration["MapCatalog:Path"];
             });
+            services.Configure<PictureCatalog>(opt =>
+            {
+                opt.Path = Configuration["PictureCatalog:Path"];
+            });
             services.Configure<OperationSystem>(opt =>
             {
                 opt.Platform = System.Environment.OSVersion.Platform;

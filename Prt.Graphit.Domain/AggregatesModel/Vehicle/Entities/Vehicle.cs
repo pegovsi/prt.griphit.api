@@ -1,17 +1,22 @@
 ﻿using Prt.Graphit.Domain.Common;
 using System;
+using System.Collections.Generic;
 
 namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
 {
     public class Vehicle : Entity, IAggregateRoot
     {
-        protected Vehicle() { }
+        protected Vehicle() 
+        {
+            _vehiclePictures = new List<VehiclePicture>();
+        }
 
         public Vehicle(string name)
             : this()
         {
             Id = Guid.NewGuid();
             Name = name;
+            IsNew = true;
         }
         public Vehicle(string name, Guid vehicleTypeId, Guid chassiId, Guid vehicleModelId,
             string vehicleNomberFactory, string vehicleNomberRegister, string vehicleNomberChassis,
@@ -21,6 +26,7 @@ namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
             : this()
         {
             Id = Guid.NewGuid();
+            IsNew = true;
             Name = name;
             VehicleTypeId = vehicleTypeId;
             ChassiId = chassiId;
@@ -52,6 +58,7 @@ namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
             : this()
         {
             Id = id;
+            IsNew = true;
             Name = name;
             VehicleTypeId = vehicleTypeId;
             ChassiId = chassiId;
@@ -110,5 +117,13 @@ namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
         public string Responsible { get; private set; }
         public DateTime ReadoutDate { get; private set; }
         public DateTime StartupDate { get; private set; }
+
+        private List<VehiclePicture> _vehiclePictures;
+        public IReadOnlyCollection<VehiclePicture> VehiclePictures=> _vehiclePictures;
+
+        public void AddPicture(string uri, string uriPreview)
+        {
+            _vehiclePictures.Add(new VehiclePicture(this.Id, uri, uriPreview));
+        }
     }
 }

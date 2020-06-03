@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Prt.Graphit.Api.Common.Api;
 using Prt.Graphit.Application.Chassis.Commands.CreateChassis;
@@ -10,6 +11,7 @@ namespace Prt.Graphit.Api.Controllers
 {
     [Route("api/v{version:apiVersion}/chassis")]
     [ApiVersion(VersionController.Version1_0)]
+    //[Authorize]
     public class ChassisController : BaseController
     {
         [HttpPost]
