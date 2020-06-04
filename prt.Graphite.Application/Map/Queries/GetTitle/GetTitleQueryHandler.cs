@@ -6,6 +6,7 @@ using Prt.Graphit.Application.Map.Queries.Models;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using System;
 
 namespace Prt.Graphit.Application.Map.Queries.GetTitle
 {
@@ -29,7 +30,7 @@ namespace Prt.Graphit.Application.Map.Queries.GetTitle
             var x = request.X.Replace("{", string.Empty).Replace("}", string.Empty);
             var y = request.Y.Replace("{", string.Empty).Replace("}", string.Empty);
 
-            if (_os.Value.Platform == System.PlatformID.Unix)
+            if (_os.Value.Platform == PlatformID.Unix)
                 path = $"{catalog}/{z}/{x}/{y}.png";
             else
                 path = $@"{catalog}\{z}\{x}\{y}.png";

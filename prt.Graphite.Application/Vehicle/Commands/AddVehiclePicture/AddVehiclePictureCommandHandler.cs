@@ -5,6 +5,7 @@ using Prt.Graphit.Application.Common.Response;
 using Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities;
 using System.Collections.Generic;
 using System.Threading;
+using System;
 using System.Threading.Tasks;
 
 namespace Prt.Graphit.Application.Vehicle.Commands.AddVehiclePicture
@@ -32,19 +33,8 @@ namespace Prt.Graphit.Application.Vehicle.Commands.AddVehiclePicture
 
             _appDbContext.Set<Domain.AggregatesModel.Vehicle.Entities.Vehicle>()
                    .Update(vehicle);
-            //_appDbContext
-            //    .DbContext
-            //    .Entry<List<VehiclePicture>>(EF.Property<List<VehiclePicture>>(vehicle, "_vehiclePicture")).State
-            //    = EntityState.Added;
-            try
-            {
-                await _appDbContext.SaveChangesAsync(cancellationToken);
-            }
-            catch (System.Exception ex)
-            {
 
-                throw;
-            }            
+            await _appDbContext.SaveChangesAsync(cancellationToken);
 
             return ResultHelper.Success<bool>(true);
         }

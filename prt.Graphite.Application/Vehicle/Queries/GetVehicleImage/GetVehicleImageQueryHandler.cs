@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using Prt.Graphit.Api.Common.Settings.Models;
 using Prt.Graphit.Application.Common.Services;
 using Prt.Graphit.Application.Map.Queries.Models;
+using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,10 +25,10 @@ namespace Prt.Graphit.Application.Vehicle.Queries.GetVehicleImage
         public async Task<FileContainer> Handle(GetVehicleImageQuery request, CancellationToken cancellationToken)
         {
             var picturePath = _options.Value.Path;
-            var path = string.Empty;
+            string path;
 
 
-            if (_os.Value.Platform == System.PlatformID.Unix)
+            if (_os.Value.Platform == PlatformID.Unix)
                 path = $"{picturePath}/{request.VehicleId}/{request.FileName}";
             else
                 path = $@"{picturePath}\{request.VehicleId}\{request.FileName}";

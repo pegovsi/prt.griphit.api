@@ -1,18 +1,22 @@
+using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Prt.Graphit.Application.System.Commands.SeedSampleData;
 using Prt.Graphit.Persistence;
 using System;
 using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Prt.Graphit.Api
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
             using (var scope = host.Services.CreateScope())
@@ -23,7 +27,9 @@ namespace Prt.Graphit.Api
                 {
                     var context = services.GetRequiredService<AppDbContext>();
                     context.Database.Migrate();
-                    //DbInitializer.SeedAsync(context);
+
+                    var mediator = services.GetRequiredService<IMediator>();
+                    await mediator.Send(new SeedSampleDataCommand(), CancellationToken.None);
                 }
                 catch (Exception ex)
                 {
