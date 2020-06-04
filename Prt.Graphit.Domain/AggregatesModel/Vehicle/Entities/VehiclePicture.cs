@@ -1,7 +1,5 @@
 ﻿using Prt.Graphit.Domain.Common;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
 {
@@ -24,6 +22,10 @@ namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
         public Guid VehicleId { get; }
         public string Uri { get; private set; }
         public string UriPreview { get; private set; }
+        /// <summary>
+        /// Основная картинка
+        /// </summary>
+        public bool Base { get; private set; }
 
         public void SetUri(string uri)
         {
@@ -32,6 +34,15 @@ namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
         public void SetUriPreview(string uriPreview)
         {
             UriPreview = uriPreview;
+        }
+
+        public void SetBase()
+        {
+            Base = true;
+        }
+        public void TakeOfBase()
+        {
+            Base = false;
         }
     }
 }
