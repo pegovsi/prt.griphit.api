@@ -19,6 +19,10 @@ using Prt.Graphit.Application.Interfaces;
 using Prt.Graphit.Identity.Common;
 using Prt.Graphit.Infrastructure;
 using Prt.Graphit.Api.Common.Settings.Models;
+using Microsoft.CodeAnalysis.Options;
+using Host = Prt.Graphit.Api.Common.Settings.Models.Host;
+using System;
+using Prt.Graphit.Application.Common.MapperProfiles;
 
 namespace Prt.Graphit.Api
 {
@@ -117,6 +121,12 @@ namespace Prt.Graphit.Api
             {
                 opt.Platform = System.Environment.OSVersion.Platform;
             });
+            services.Configure<Host>(opt=> 
+            {
+                opt.Address = Configuration["Host:Address"];
+            });
+
+            services.AddAutoMapper(_assemblyApplication);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -146,8 +156,6 @@ namespace Prt.Graphit.Api
             {
                 endpoints.MapControllers();
             });
-
-            env.AutoMapperConfigure(_assemblyApplication);
         }
     }
 }

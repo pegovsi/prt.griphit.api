@@ -16,7 +16,9 @@ namespace Prt.Graphit.Application.Vehicle.Queries.GetVehicleById
         private readonly IAppDbContext _appDbContext;
         private readonly IMapper _mapper;
 
-        public GetVehicleByIdQueryHandler(IAppDbContext appDbContext, IMapper mapper)
+        public GetVehicleByIdQueryHandler(IAppDbContext appDbContext
+            , IMapper mapper
+            )
         {
             _appDbContext = appDbContext;
             _mapper = mapper;
