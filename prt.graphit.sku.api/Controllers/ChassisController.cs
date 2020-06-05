@@ -11,7 +11,7 @@ namespace Prt.Graphit.Api.Controllers
 {
     [Route("api/v{version:apiVersion}/chassis")]
     [ApiVersion(VersionController.Version1_0)]
-    //[Authorize]
+    [Authorize]
     public class ChassisController : BaseController
     {
         [HttpPost]

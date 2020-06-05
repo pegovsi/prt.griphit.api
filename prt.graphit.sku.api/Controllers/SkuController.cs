@@ -14,7 +14,7 @@ namespace Prt.Graphit.Api.Controllers
 {
     [Route("api/v{version:apiVersion}/sku")]
     [ApiVersion(VersionController.Version1_0)]
-    //[Authorize]
+    [Authorize]
     public class SkuController : BaseController
     {
         [HttpGet, Route("{id}")]

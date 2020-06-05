@@ -14,7 +14,7 @@ namespace Prt.Graphit.Api.Controllers
 {
     [Route("api/v{version:apiVersion}/garrison")]
     [ApiVersion(VersionController.Version1_0)]
-    //[Authorize]
+    [Authorize]
     public class GarrisonController : BaseController
     {
         [HttpPost]

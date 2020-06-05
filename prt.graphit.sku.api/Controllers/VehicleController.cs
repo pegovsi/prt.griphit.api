@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Prt.Graphit.Api.Common.Api;
 using Prt.Graphit.Application.Common.Paging;
 using Prt.Graphit.Application.Common.Response;
@@ -17,7 +18,7 @@ namespace Prt.Graphit.Api.Controllers
 {
     [Route("api/v{version:apiVersion}/vehicles")]
     [ApiVersion(VersionController.Version1_0)]
-    //[Authorize]
+    [Authorize]
     public class VehicleController : BaseController
     {
         [HttpPost]
@@ -47,6 +48,7 @@ namespace Prt.Graphit.Api.Controllers
             [FromBody] AddVehiclePictureCommand command, CancellationToken token)
             => await Mediator.Send(command, token);
 
+        [AllowAnonymous]
         [HttpGet, Route("vehicle-images/{vehicleId}/{fileName}")]
         public async Task<ActionResult> GetVehicleImage(Guid vehicleId, string fileName)
         {
