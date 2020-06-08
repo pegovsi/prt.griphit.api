@@ -1,5 +1,6 @@
 ﻿using Prt.Graphit.Domain.Common;
 using System;
+using System.Collections.Generic;
 
 namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
 {
@@ -63,6 +64,9 @@ namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
         public Guid VehicleModelTypeId { get; private set; }
         public Guid ChassiId { get; private set; }
         public string IconLink { get; private set; }
+
+        private List<VehicleModelPosition> _vehicleModelPositions;
+        public IReadOnlyCollection<VehicleModelPosition> VehicleModelPositions => _vehicleModelPositions;
 
 
         public void SetIconLink(string iconLink)

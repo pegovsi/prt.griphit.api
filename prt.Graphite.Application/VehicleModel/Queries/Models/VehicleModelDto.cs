@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Prt.Graphit.Application.VehicleModel.Queries.Models
 {
@@ -12,5 +11,6 @@ namespace Prt.Graphit.Application.VehicleModel.Queries.Models
         public Guid VehicleModelTypeId { get; private set; }
         public Guid ChassiId { get; private set; }
         public string IconLink { get; private set; }
+        public IEnumerable<VehicleModelPositionDto> VehicleModelPositions { get; private set; }
     }
 }

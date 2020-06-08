@@ -45,6 +45,8 @@ namespace Prt.Graphit.Application.Common.MapperProfiles
             CreateMap<Domain.AggregatesModel.Vehicle.Entities.Vehicle, VehicleDto>();
             CreateMap<Domain.AggregatesModel.Vehicle.Entities.Chassis, ChassisDto>();
             CreateMap<Domain.AggregatesModel.Vehicle.Entities.VehicleModel, VehicleModelDto>();
+            CreateMap<Domain.AggregatesModel.Vehicle.Entities.VehicleModelPosition, VehicleModelPositionDto>();
+            
             CreateMap<Domain.AggregatesModel.Vehicle.Entities.Manufacturer, ManufacturerDto>();
             CreateMap<Domain.AggregatesModel.Vehicle.Entities.Garrison, GarrisonDto>();
             CreateMap<Domain.AggregatesModel.Vehicle.Entities.City, CityDto>();

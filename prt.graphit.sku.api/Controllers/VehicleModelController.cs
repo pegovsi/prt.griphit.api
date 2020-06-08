@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using Prt.Graphit.Api.Common.Api;
 using Prt.Graphit.Application.Common.Response;
 using Prt.Graphit.Application.VehicleModel.Commands.CreateVehicleModel;
+using Prt.Graphit.Application.VehicleModel.Queries.GetAllVehicleModel;
+using Prt.Graphit.Application.VehicleModel.Queries.Models;
 
 namespace Prt.Graphit.Api.Controllers
 {
@@ -22,5 +24,9 @@ namespace Prt.Graphit.Api.Controllers
                 [FromBody] CreateVehicleModelCommand command,
                 CancellationToken token)
                 => await Mediator.Send(command, token);
+
+        [HttpGet]
+        public async Task<VehicleModelDto[]> GetModels(CancellationToken token)
+            => await Mediator.Send(new GetAllVehicleModelQuery());
     }
 }

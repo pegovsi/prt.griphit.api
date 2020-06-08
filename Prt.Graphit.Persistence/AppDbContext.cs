@@ -58,6 +58,7 @@ namespace Prt.Graphit.Persistence
         public DbSet<VehicleType> VehicleTypes { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<VehiclePicture> VehiclePictures { get; set; }
+        public DbSet<VehicleModelPosition> VehicleModelPositions { get; set; }
 
         public DbSet<ActiveStatus> ActiveStatus { get; set; }
         public DbSet<TypeStateServiceStatus> TypeStateServiceStatus { get; set; }
