@@ -24,6 +24,6 @@ namespace Prt.Graphit.Application.Crew.Queries.Models
         public Guid MilitaryFormationId { get; private set; }
         public MilitaryFormationDto MilitaryFormation { get; private set; }
 
-        public List<CrewPositionDto> CrewPositions;
+        public List<CrewPositionDto> CrewPositions { get; private set; }
     }
 }
