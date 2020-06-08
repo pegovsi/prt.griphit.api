@@ -3,6 +3,7 @@ using Prt.Graphit.Application.Common.Handlers;
 using Prt.Graphit.Application.Common.Interfaces;
 using Prt.Graphit.Application.Common.Response;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -17,6 +18,10 @@ namespace Prt.Graphit.Application.Crew.Commands.AddCrew
 
         public override async Task<Result<Guid>> Handle(AddCrewCommand request, CancellationToken cancellationToken)
         {
+            var crewPositions = request.CrewPositions.Select(x =>
+                new Domain.AggregatesModel.Crew.Entities.CrewPosition
+                (x.MilitaryPositionId, x.AccountId)).ToList();
+
             var crew = new Domain.AggregatesModel.Crew.Entities.Crew
             (
                 orderNumber: request.OrderNumber,
@@ -24,20 +29,16 @@ namespace Prt.Graphit.Application.Crew.Commands.AddCrew
                 orderDateFinish: request.OrderDateFinish,
                 typesMilitaryOrderId: request.TypesMilitaryOrderId,
                 vehicleId: request.VehicleId,
-                militaryFormationId: request.MilitaryFormationId
+                militaryFormationId: request.MilitaryFormationId,
+                crewPositions: crewPositions
             );
-
-            foreach (var position in request.CrewPositions)
-            {
-                crew.AddCrewPosition(position.MilitaryPositionId, position.AccountId);
-            }
-
+           
             await ContextDb.Set<Domain.AggregatesModel.Crew.Entities.Crew>()
                 .AddAsync(crew, cancellationToken);
 
             await ContextDb.SaveChangesAsync(cancellationToken);
 
-            return ResultHelper.Success<Guid>(crew.Id);
+            return ResultHelper.Success(crew.Id);
         }
     }
 }

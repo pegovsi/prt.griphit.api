@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Prt.Graphit.Application.Common.Interfaces;
 using Prt.Graphit.Domain.AggregatesModel.Account.Entities;
@@ -15,16 +16,26 @@ using Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities;
 using Prt.Graphit.Domain.Common;
 using Prt.Graphit.Domain.Enumerations;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Unit = Prt.Graphit.Domain.AggregatesModel.Sku.Entities.Unit;
+using Prt.Graphit.Application.Common.Extensions;
 
 namespace Prt.Graphit.Persistence
 {
     public class AppDbContext : DbContext, IAppDbContext
     {
+        private readonly IMediator _mediator;
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
+        }
+        public AppDbContext(DbContextOptions<AppDbContext> options,
+            IMediator mediator)
+            : base(options)
+        {
+            _mediator = mediator;
         }
 
         public DbSet<Account> Accounts { get; set; }
@@ -94,11 +105,11 @@ namespace Prt.Graphit.Persistence
 
             var result = await base.SaveChangesAsync(cancellationToken);
 
-            //// Не посылаем события во время тестов
-            //if (Database.IsNpgsql())
-            //{
-            //    await DispatchDomainEventsAsync();
-            //}
+            // Не посылаем события во время тестов
+            if (Database.IsNpgsql())
+            {
+                await DispatchDomainEventsAsync();
+            }
 
             return result;
         }
@@ -109,6 +120,14 @@ namespace Prt.Graphit.Persistence
             {
                 entry.State = EntityState.Added;
             }
+        }
+
+        private async Task DispatchDomainEventsAsync()
+        {
+            var domainEntities = ChangeTracker
+               .Entries<Entity>()
+               .Where(x => x.Entity.DomainEvents != null && x.Entity.DomainEvents.Any());
+            await _mediator.DispatchDomainEventsAsync(domainEntities);
         }
     }
 }

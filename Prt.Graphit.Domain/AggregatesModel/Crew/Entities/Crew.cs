@@ -1,4 +1,5 @@
 ﻿using Prt.Graphit.Domain.Common;
+using Prt.Graphit.Domain.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,8 @@ namespace Prt.Graphit.Domain.AggregatesModel.Crew.Entities
         }
 
         public Crew(string orderNumber, DateTime orderDateStart, DateTime orderDateFinish,
-            Guid typesMilitaryOrderId, Guid vehicleId, Guid militaryFormationId)
+            Guid typesMilitaryOrderId, Guid vehicleId, Guid militaryFormationId,
+            List<CrewPosition> crewPositions)
             :this()
         {
             Id = Guid.NewGuid();
@@ -27,6 +29,9 @@ namespace Prt.Graphit.Domain.AggregatesModel.Crew.Entities
             TypesMilitaryOrderId = typesMilitaryOrderId;
             VehicleId = vehicleId;
             MilitaryFormationId = militaryFormationId;
+            _crewPositions = crewPositions;
+
+            AddCrewDomainEvent();
         }
 
         public override Guid Id { get; protected set; }
@@ -73,6 +78,12 @@ namespace Prt.Graphit.Domain.AggregatesModel.Crew.Entities
                 return;
 
             _crewPositions.Remove(position);
+        }
+
+        private void AddCrewDomainEvent()
+        {
+            var crewUpdatedDomainEvent = new CrewUpdatedDomainEvent(this);
+            base.AddDomainEvent(crewUpdatedDomainEvent);
         }
     }
 }
