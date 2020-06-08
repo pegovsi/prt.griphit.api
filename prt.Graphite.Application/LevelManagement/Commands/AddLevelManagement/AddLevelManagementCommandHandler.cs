@@ -2,10 +2,6 @@
 using MediatR;
 using Prt.Graphit.Application.Common.Handlers;
 using Prt.Graphit.Application.Common.Interfaces;
-using Prt.Graphit.Domain.AggregatesModel.LeveManagement.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,7 +14,8 @@ namespace Prt.Graphit.Application.LevelManagement.Commands.AddLevelManagement
         {
         }
 
-        public override async Task<Unit> Handle(AddLevelManagementCommand request, CancellationToken cancellationToken)
+        public override async Task<Unit> Handle(AddLevelManagementCommand request,
+            CancellationToken cancellationToken)
         {
             var levelManagement = new Domain.AggregatesModel.LeveManagement.Entities.LevelManagement
             (
@@ -35,7 +32,7 @@ namespace Prt.Graphit.Application.LevelManagement.Commands.AddLevelManagement
 
             await ContextDb.SaveChangesAsync(cancellationToken);
 
-            return new Unit();
+            return Unit.Value;
         }
     }
 }

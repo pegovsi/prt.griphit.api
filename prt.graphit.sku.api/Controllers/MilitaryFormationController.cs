@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Prt.Graphit.Api.Common.Api;
+using Prt.Graphit.Application.Common.Paging;
 using Prt.Graphit.Application.MilitaryFormation.Commands.AddMilitaryFormation;
 using Prt.Graphit.Application.MilitaryFormation.Queries.GetAllMilitaryFormations;
+using Prt.Graphit.Application.MilitaryFormation.Queries.GetMilitaryFormationById;
+using Prt.Graphit.Application.MilitaryFormation.Queries.GetMilitaryFormationPage;
 using Prt.Graphit.Application.MilitaryFormation.Queries.Models;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Prt.Graphit.Api.Controllers
 {
@@ -29,5 +29,15 @@ namespace Prt.Graphit.Api.Controllers
             var result = await Mediator.Send(command, token);
             return Ok(result);
         }
+
+        [HttpGet, Route("{id}")]
+        public async Task<MilitaryFormationDto> GetById(Guid id, CancellationToken token)
+            => await Mediator.Send(new GetMilitaryFormationByIdQuery(id), token);
+        
+
+        [HttpPost, Route("page")]
+        public async Task<MilitaryFormationCollectionViewModel> GetPage(
+           [FromBody] PageContext<MilitaryFormationPageFilter> context, CancellationToken token)
+           => await Mediator.Send(new GetMilitaryFormationPageQuery(context), token);
     }
 }

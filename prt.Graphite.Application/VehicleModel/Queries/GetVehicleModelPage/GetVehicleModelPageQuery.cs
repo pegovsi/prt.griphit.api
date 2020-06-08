@@ -1,9 +1,6 @@
 ﻿using MediatR;
 using Prt.Graphit.Application.Common.Paging;
 using Prt.Graphit.Application.VehicleModel.Queries.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Prt.Graphit.Application.VehicleModel.Queries.GetVehicleModelPage
 {
