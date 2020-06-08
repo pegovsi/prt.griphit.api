@@ -5,6 +5,7 @@ using Prt.Graphit.Application.Common.Paging;
 using Prt.Graphit.Application.Common.Response;
 using Prt.Graphit.Application.Vehicle.Commands.AddVehiclePicture;
 using Prt.Graphit.Application.Vehicle.Commands.CreateVehicle;
+using Prt.Graphit.Application.Vehicle.Queries.GetAllVehicleForSelect;
 using Prt.Graphit.Application.Vehicle.Queries.GetVehicleById;
 using Prt.Graphit.Application.Vehicle.Queries.GetVehicleImage;
 using Prt.Graphit.Application.Vehicle.Queries.GetVehiclesPage;
@@ -49,6 +50,7 @@ namespace Prt.Graphit.Api.Controllers
             => await Mediator.Send(command, token);
 
         [AllowAnonymous]
+        [ResponseCache(Location = ResponseCacheLocation.Any, Duration = 3600)]
         [HttpGet, Route("vehicle-images/{vehicleId}/{fileName}")]
         public async Task<ActionResult> GetVehicleImage(Guid vehicleId, string fileName)
         {
@@ -58,5 +60,9 @@ namespace Prt.Graphit.Api.Controllers
 
             return File(content.Data, content.ContentType, content.FileName);
         }
+
+        [HttpGet, Route("select")]
+        public async Task<VehicleShortDto[]> GetForSeleced()
+            => await Mediator.Send(new GetAllVehicleForSelectQuery());
     }
 }

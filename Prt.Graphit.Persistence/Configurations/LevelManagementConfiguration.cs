@@ -26,6 +26,7 @@ namespace Prt.Graphit.Persistence.Configurations
 
             builder
                 .Property<int>("_activeStatusId")
+                //.HasField("_activeStatusId")
                 .UsePropertyAccessMode(PropertyAccessMode.Field)
                 .HasColumnName("ActiveStatusId")
                 .IsRequired();
@@ -34,6 +35,11 @@ namespace Prt.Graphit.Persistence.Configurations
                 .HasOne(o => o.ActiveStatus)
                 .WithMany()
                 .HasForeignKey("_activeStatusId");
+
+            //var navigation = builder
+            //    .Metadata
+            //    .FindNavigation(nameof(LevelManagement.ActiveStatus));
+            //navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
 
             builder.HasIndex(e => e.Name);
         }

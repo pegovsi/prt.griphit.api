@@ -18,7 +18,7 @@ namespace Prt.Graphit.Domain.AggregatesModel.Crew.Entities
 
         public Crew(string orderNumber, DateTime orderDateStart, DateTime orderDateFinish,
             Guid typesMilitaryOrderId, Guid vehicleId, Guid militaryFormationId)
-            :base()
+            :this()
         {
             Id = Guid.NewGuid();
             OrderNumber = orderNumber;
@@ -53,6 +53,9 @@ namespace Prt.Graphit.Domain.AggregatesModel.Crew.Entities
             var position = _crewPositions.FirstOrDefault(x => x.MilitaryPositionId == militaryPositionId);
             if (position is null)
             {
+                if (_crewPositions is null)
+                    _crewPositions = new List<CrewPosition>();
+
                 _crewPositions.Add(new CrewPosition(militaryPositionId, accountId));
             }
             else 

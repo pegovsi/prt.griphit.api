@@ -20,7 +20,7 @@ namespace Prt.Graphit.Domain.Enumerations
         /// </summary>
         public static TypeStateServiceStatus Civil = new TypeStateServiceStatus(2, nameof(Civil).ToLowerInvariant());
 
-        protected TypeStateServiceStatus(int id, string name)
+        public TypeStateServiceStatus(int id, string name)
             : base(id, name)
         {
         }

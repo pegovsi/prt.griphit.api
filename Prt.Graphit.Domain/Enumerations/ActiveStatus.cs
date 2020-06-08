@@ -12,7 +12,7 @@ namespace Prt.Graphit.Domain.Enumerations
         public static ActiveStatus Inactive = new ActiveStatus(2, nameof(Inactive).ToLowerInvariant());
         public static ActiveStatus Draft = new ActiveStatus(3, nameof(Draft).ToLowerInvariant());
 
-        protected ActiveStatus(int id, string name)
+        public ActiveStatus(int id, string name)
             : base(id, name)
         {
         }

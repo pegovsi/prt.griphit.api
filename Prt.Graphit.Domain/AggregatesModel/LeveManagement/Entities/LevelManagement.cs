@@ -1,6 +1,7 @@
 ﻿using Prt.Graphit.Domain.Common;
 using Prt.Graphit.Domain.Enumerations;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Prt.Graphit.Domain.AggregatesModel.LeveManagement.Entities
 {
