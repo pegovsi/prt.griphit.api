@@ -62,7 +62,10 @@ namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
         public string Name { get; private set; }
         public string ShortName { get; private set; }
         public Guid VehicleModelTypeId { get; private set; }
+        public VehicleType VehicleModelType { get; private set; }
+
         public Guid ChassiId { get; private set; }
+        public Chassis Chassi { get; private set; }
         public string IconLink { get; private set; }
 
         private List<VehicleModelPosition> _vehicleModelPositions;

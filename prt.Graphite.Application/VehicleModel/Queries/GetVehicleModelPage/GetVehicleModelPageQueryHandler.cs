@@ -26,6 +26,8 @@ namespace Prt.Graphit.Application.VehicleModel.Queries.GetVehicleModelPage
         {
             var models = ContextDb.Set<Domain.AggregatesModel.Vehicle.Entities.VehicleModel>()
                  .Where(BuildFilter(request))
+                 .Include(x=>x.VehicleModelType)
+                 .Include(x => x.Chassi)
                  .Include(x => x.VehicleModelPositions);
 
             var (list, count) = models.ApplySorting(request.Context);

@@ -11,6 +11,7 @@ namespace Prt.Graphit.Api.Controllers
     [ApiVersion(VersionController.Version1_0)]
     public class IdentityController : BaseController
     {
+        [HttpPost]
         public async Task<ActionResult<IdentityResponse>> Auth(
             AuthenticatedQuery query, CancellationToken token)
         {

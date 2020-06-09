@@ -7,8 +7,10 @@ using Prt.Graphit.Application.Vehicle.Commands.AddVehiclePicture;
 using Prt.Graphit.Application.Vehicle.Commands.CreateVehicle;
 using Prt.Graphit.Application.Vehicle.Queries.GetAllVehicleForSelect;
 using Prt.Graphit.Application.Vehicle.Queries.GetVehicleById;
+using Prt.Graphit.Application.Vehicle.Queries.GetVehicleCounts;
 using Prt.Graphit.Application.Vehicle.Queries.GetVehicleImage;
 using Prt.Graphit.Application.Vehicle.Queries.GetVehiclesPage;
+using Prt.Graphit.Application.Vehicle.Queries.GetVehiclesReportByCity;
 using Prt.Graphit.Application.Vehicle.Queries.Models;
 using Prt.Graphit.Application.Vehicle.Queries.SearchVehicleByName;
 using System;
@@ -64,5 +66,13 @@ namespace Prt.Graphit.Api.Controllers
         [HttpGet, Route("select")]
         public async Task<VehicleShortDto[]> GetForSeleced()
             => await Mediator.Send(new GetAllVehicleForSelectQuery());
+
+        [HttpGet, Route("condition")]
+        public async Task<VehicleConditionDto> GetVehiclesCondition()
+            => await Mediator.Send(new GetVehicleCountsQuery());
+        
+        [HttpGet, Route("report-by-city")]
+        public async Task<VehiclesCountByCityDto> GetVehiclesByCity()
+            => await Mediator.Send(new GetVehiclesReportByCityQuery());
     }
 }

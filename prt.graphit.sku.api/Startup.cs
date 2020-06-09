@@ -104,6 +104,26 @@ namespace Prt.Graphit.Api
                     Version = "v1",
                     Title = $"{nameof(Prt.Graphit.Api)}",
                 });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+                {
+                  new OpenApiSecurityScheme
+                  {
+                    Reference = new OpenApiReference
+                    {
+                      Type = ReferenceType.SecurityScheme,
+                      Id = "Bearer"
+                    }
+                   },
+                   new string[] { }
+                 }
+                });
                 c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
                 c.CustomSchemaIds(x => x.FullName);
                 c.EnableAnnotations();
@@ -142,7 +162,7 @@ namespace Prt.Graphit.Api
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("./v1/swagger.json", "SP.Protocol.API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Prt.Graphit.Api V1");
             });
 
             // app.UseHttpsRedirection();
