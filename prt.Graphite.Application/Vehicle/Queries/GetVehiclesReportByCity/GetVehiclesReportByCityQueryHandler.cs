@@ -8,6 +8,7 @@ using System.Text;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Prt.Graphit.Application.Vehicle.Queries.GetVehiclesReportByCity
 {
@@ -32,7 +33,7 @@ namespace Prt.Graphit.Application.Vehicle.Queries.GetVehiclesReportByCity
             var cities = new List<string>();
             var count = new List<int>();
 
-            foreach (var item in data)
+            foreach (var item in await data.ToArrayAsync(cancellationToken))
             {
                 cities.Add(item.Name);
                 count.Add(item.Count);
