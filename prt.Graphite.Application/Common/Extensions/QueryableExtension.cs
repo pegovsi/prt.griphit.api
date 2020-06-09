@@ -30,7 +30,7 @@ namespace Prt.Graphit.Application.Common.Extensions
 
                 if (pageContext.PageIndex != 0 && pageContext.PageSize != 0)
                 {
-                    model = model.Skip(pageContext.PageIndex - 1)
+                    model = model.Skip((pageContext.PageIndex - 1) * pageContext.PageSize)
                         .Take(pageContext.PageSize);
                 }
             }
