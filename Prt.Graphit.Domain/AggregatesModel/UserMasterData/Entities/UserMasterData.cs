@@ -1,4 +1,5 @@
-﻿using Prt.Graphit.Domain.Common;
+﻿using Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities;
+using Prt.Graphit.Domain.Common;
 using Prt.Graphit.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,7 @@ namespace Prt.Graphit.Domain.AggregatesModel.UserMasterData.Entities
         /// Модель ВВТ
         /// </summary>
         public Guid VehicleModelId { get; private set; }
+        public VehicleModel VehicleModel { get; private set; }
         /// <summary>
         /// Наименование пользовательского справочника
         /// </summary>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prt.Graphit.Application.VehicleModel.Queries.Models;
+using System;
 using System.Collections.Generic;
 
 namespace Prt.Graphit.Application.UserMasterData.Queries.Models
@@ -7,6 +8,7 @@ namespace Prt.Graphit.Application.UserMasterData.Queries.Models
     {
         public Guid Id { get; private set; }
         public Guid VehicleModelId { get; private set; }
+        public VehicleModelDto VehicleModel { get; private set; }
         public string Name { get; private set; }
         public IEnumerable<UserMasterDataFieldDto> UserMasterDataFields { get; private set; }
     }

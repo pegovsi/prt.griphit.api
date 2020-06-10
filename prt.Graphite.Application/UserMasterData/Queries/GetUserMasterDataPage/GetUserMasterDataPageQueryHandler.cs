@@ -27,6 +27,7 @@ namespace Prt.Graphit.Application.UserMasterData.Queries.GetUserMasterDataPage
             var models = ContextDb
                .Set<Domain.AggregatesModel.UserMasterData.Entities.UserMasterData>()
                .Where(BuildFilter(request))
+               .Include(x=>x.VehicleModel)
                .Include(x => x.UserMasterDataFields)
                .ThenInclude(x => x.TypeUserMasterData);
 
