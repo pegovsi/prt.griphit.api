@@ -15,6 +15,7 @@ using Prt.Graphit.Application.MilitaryPosition.Queries.Models;
 using Prt.Graphit.Application.Sku.Models;
 using Prt.Graphit.Application.Subdivision.Queries.Models;
 using Prt.Graphit.Application.TypesMilitaryOrder.Queries.Models;
+using Prt.Graphit.Application.UserMasterData.Queries.Models;
 using Prt.Graphit.Application.Users.Queries.Models;
 using Prt.Graphit.Application.Vehicle.Queries.Models;
 using Prt.Graphit.Application.VehicleModel.Queries.Models;
@@ -61,6 +62,12 @@ namespace Prt.Graphit.Application.Common.MapperProfiles
 
             CreateMap<Domain.AggregatesModel.Crew.Entities.Crew, CrewDto>();
             CreateMap<Domain.AggregatesModel.Crew.Entities.CrewPosition, CrewPositionDto>();
+
+            //UserMasterDataDto
+            CreateMap<Domain.AggregatesModel.UserMasterData.Entities.TypeUserMasterData, TypeUserMasterDataDto>();
+            CreateMap<Domain.AggregatesModel.UserMasterData.Entities.UserMasterDataValue, UserMasterDataValueDto>();
+            CreateMap<Domain.AggregatesModel.UserMasterData.Entities.UserMasterDataField, UserMasterDataFieldDto>();
+            CreateMap<Domain.AggregatesModel.UserMasterData.Entities.UserMasterData, UserMasterDataDto>();
         }
     }
 }

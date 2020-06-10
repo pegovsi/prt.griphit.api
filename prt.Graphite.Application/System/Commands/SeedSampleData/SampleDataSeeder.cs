@@ -25,6 +25,7 @@ namespace Prt.Graphit.Application.System.Commands.SeedSampleData
             await SeedConditionsAsync(token);
             await SeedLevelManagementAsync(token);
             await SeedTypesMilitaryOrderAsync(token);
+            await SeedTypeUserMasterData(token);
         }
 
         private async Task SeedTypesMilitaryOrderAsync(CancellationToken token)
@@ -271,6 +272,33 @@ namespace Prt.Graphit.Application.System.Commands.SeedSampleData
             {
                 await _context.Set<Domain.AggregatesModel.LeveManagement.Entities.LevelManagement>()
                     .AddRangeAsync(listNewEntities);
+
+                await _context.SaveChangesAsync(token);
+            }
+        }
+
+        private async Task SeedTypeUserMasterData(CancellationToken token)
+        {
+            var types = await _context
+              .DbContext
+              .Set<Domain.AggregatesModel.UserMasterData.Entities.TypeUserMasterData>()
+              .ToListAsync(token);
+
+            if (!types.Any())
+            {
+                types = new List<Domain.AggregatesModel.UserMasterData.Entities.TypeUserMasterData>
+                {
+                    new Domain.AggregatesModel.UserMasterData.Entities.TypeUserMasterData("String", "Строка"),
+                    new Domain.AggregatesModel.UserMasterData.Entities.TypeUserMasterData("Int", "Целое число"),
+                    new Domain.AggregatesModel.UserMasterData.Entities.TypeUserMasterData("Decimal", "Дробное число"),
+                    new Domain.AggregatesModel.UserMasterData.Entities.TypeUserMasterData("Date", "Дата"),
+                    new Domain.AggregatesModel.UserMasterData.Entities.TypeUserMasterData("SkuRef", "Ссылка на номенклатуру")
+                };
+
+                await _context
+                .DbContext
+                .Set<Domain.AggregatesModel.UserMasterData.Entities.TypeUserMasterData>()
+                .AddRangeAsync(types);
 
                 await _context.SaveChangesAsync(token);
             }

@@ -21,6 +21,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Unit = Prt.Graphit.Domain.AggregatesModel.Sku.Entities.Unit;
 using Prt.Graphit.Application.Common.Extensions;
+using Prt.Graphit.Domain.AggregatesModel.UserMasterData.Entities;
 
 namespace Prt.Graphit.Persistence
 {
@@ -75,6 +76,12 @@ namespace Prt.Graphit.Persistence
         public DbSet<Crew> Crews { get; set; }
         public DbSet<CrewPosition> CrewPositions { get; set; }
         public DbSet<CrewHistory> CrewHistorys { get; set; }
+
+
+        public DbSet<TypeUserMasterData> TypeUserMasterDatas { get; set; }
+        public DbSet<UserMasterData> UserMasterDatas { get; set; }
+        public DbSet<UserMasterDataField> UserMasterDataFields { get; set; }
+        public DbSet<UserMasterDataValue> UserMasterDataValues { get; set; }
 
         public DbContext DbContext => this;
 
