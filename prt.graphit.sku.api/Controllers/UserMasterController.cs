@@ -6,6 +6,8 @@ using Prt.Graphit.Application.Common.Response;
 using Prt.Graphit.Application.UserMasterData.Commands.Create;
 using Prt.Graphit.Application.UserMasterData.Commands.Delete;
 using Prt.Graphit.Application.UserMasterData.Commands.Update;
+using Prt.Graphit.Application.UserMasterData.Queries.GetTypeUserMasterData;
+using Prt.Graphit.Application.UserMasterData.Queries.GetUserMasterDataById;
 using Prt.Graphit.Application.UserMasterData.Queries.GetUserMasterDataByVehicleModelId;
 using Prt.Graphit.Application.UserMasterData.Queries.GetUserMasterDataPage;
 using Prt.Graphit.Application.UserMasterData.Queries.Models;
@@ -29,7 +31,11 @@ namespace Prt.Graphit.Api.Controllers
         public async Task<UserMasterDataDto[]> GetByModel(Guid id)
             => await Mediator.Send(new GetUserMasterDataByVehicleModelIdQuery(id));
 
-        [HttpPost, Route("model/{id}")]
+        [HttpGet, Route("{id}")]
+        public async Task<UserMasterDataDto> GetById(Guid id)
+           => await Mediator.Send(new GetUserMasterDataByIdQuery(id));
+
+        [HttpPost]
         public async Task<Result<Guid>> CreateByModel(
             [FromBody] CreateUserMasterDataCommand command, CancellationToken token)
             => await Mediator.Send(command, token);
@@ -43,5 +49,9 @@ namespace Prt.Graphit.Api.Controllers
         public async Task<Result<bool>> DeleteByModel(
             [FromBody] DeleteUserMasterDataCommand command, CancellationToken token)
             => await Mediator.Send(command, token);
+
+        [HttpGet, Route("types")]
+        public async Task<TypeUserMasterDataDto[]> GetTypeUserMasterData()
+            => await Mediator.Send(new GetTypeUserMasterDataQuery());
     }
 }
