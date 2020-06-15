@@ -1,6 +1,7 @@
 ﻿using Prt.Graphit.Domain.Common;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
 {
@@ -71,10 +72,17 @@ namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
         private List<VehicleModelPosition> _vehicleModelPositions;
         public IReadOnlyCollection<VehicleModelPosition> VehicleModelPositions => _vehicleModelPositions;
 
+        public IReadOnlyCollection<UserMasterData.Entities.UserMasterData> UserMasterDatas { get; private set; }
+
 
         public void SetIconLink(string iconLink)
         {
             IconLink = iconLink;
+        }
+
+        public void Include(IEnumerable<UserMasterData.Entities.UserMasterData> data)
+        {
+            UserMasterDatas = data.ToList();
         }
     }
 }

@@ -6,6 +6,7 @@ using Prt.Graphit.Application.Division.Queries.Models;
 using Prt.Graphit.Application.Garrison.Queries.Models;
 using Prt.Graphit.Application.Manufacturer.Queries.Models;
 using Prt.Graphit.Application.Subdivision.Queries.Models;
+using Prt.Graphit.Application.UserMasterData.Queries.Models;
 using Prt.Graphit.Application.VehicleModel.Queries.Models;
 using Prt.Graphit.Application.VehicleType.Queries.Models;
 using System;
@@ -47,5 +48,6 @@ namespace Prt.Graphit.Application.Vehicle.Queries.Models
         public DateTime ReadoutDate { get; private set; }
         public DateTime StartupDate { get; private set; }
         public IEnumerable<VehiclePictureDto> VehiclePictures { get; private set; }
+        public IEnumerable<UserMasterDataValueDto> UserMasterDataValues { get; private set; }
     }
 }

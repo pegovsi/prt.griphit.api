@@ -1,4 +1,5 @@
-﻿using Prt.Graphit.Domain.Common;
+﻿using Prt.Graphit.Domain.AggregatesModel.UserMasterData.Entities;
+using Prt.Graphit.Domain.Common;
 using System;
 using System.Collections.Generic;
 
@@ -117,6 +118,8 @@ namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
         public string Responsible { get; private set; }
         public DateTime ReadoutDate { get; private set; }
         public DateTime StartupDate { get; private set; }
+
+        public IEnumerable<UserMasterDataValue> UserMasterDataValue { get; private set; }
 
         private List<VehiclePicture> _vehiclePictures;
         public IReadOnlyCollection<VehiclePicture> VehiclePictures=> _vehiclePictures;

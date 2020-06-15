@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Prt.Graphit.Application.Common.Interfaces;
+using Prt.Graphit.Domain.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,8 @@ namespace Prt.Graphit.Application.System.Commands.SeedSampleData
             await SeedLevelManagementAsync(token);
             await SeedTypesMilitaryOrderAsync(token);
             await SeedTypeUserMasterData(token);
+
+            await SeedUserMasterDataWithFieldsView(token);
         }
 
         private async Task SeedTypesMilitaryOrderAsync(CancellationToken token)
@@ -276,7 +279,6 @@ namespace Prt.Graphit.Application.System.Commands.SeedSampleData
                 await _context.SaveChangesAsync(token);
             }
         }
-
         private async Task SeedTypeUserMasterData(CancellationToken token)
         {
             var types = await _context
@@ -301,6 +303,40 @@ namespace Prt.Graphit.Application.System.Commands.SeedSampleData
                 .AddRangeAsync(types);
 
                 await _context.SaveChangesAsync(token);
+            }
+        }
+        
+        private async Task SeedUserMasterDataWithFieldsView(CancellationToken token)
+        {
+            var script = $@"CREATE VIEW {UserMasterDataFieldView.View} AS select 
+                            usmd.'Id' as 'Id',
+                            usmd.'Name' as 'Name',
+                            usmd.'VehicleModelId' as 'VehicleModelId',
+                            usmdf.'NameField' as 'NameField',
+                            tusmd.'Id' as 'TypeDataId',
+                            tusmd.'TypeData' as 'TypeData',
+                            tusmd.'Description' as 'Description'
+                            from public.'UserMasterData' as usmd
+                            left join public.'UserMasterDataField' as usmdf ON usmdf.'UserMasterDataId' = usmd.'Id'
+                            left join public.'TypeUserMasterData' as tusmd on tusmd.'Id' = usmdf.'TypeUserMasterDataId'"
+                            .Replace("'", "\"");
+            await ExecuteSqlCommands(UserMasterDataFieldView.View, script, token);
+        }
+        private async Task ExecuteSqlCommands(string viewName, string scriptCreateForNewView, CancellationToken token)
+        {
+            var script = $"SELECT * FROM INFORMATION_SCHEMA.views WHERE table_name='{viewName}'";
+
+            bool hasView;
+
+            
+            using (var command = _context.DbConnection.CreateCommand())
+            {
+                command.CommandText = script;
+                await _context.DbConnection.OpenAsync(token);
+                using (var result = command.ExecuteReader())
+                    hasView = result.HasRows;
+                if (!hasView)
+                    await _context.ExecuteSqlRawAsync(scriptCreateForNewView, token);
             }
         }
     }

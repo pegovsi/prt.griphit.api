@@ -25,6 +25,7 @@ namespace Prt.Graphit.Persistence.Configurations
             builder
                 .HasMany(e => e.UserMasterDataFields)
                 .WithOne();
+            
 
             builder.HasIndex(x => x.VehicleModelId);
         }

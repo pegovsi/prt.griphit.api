@@ -41,7 +41,7 @@ namespace Prt.Graphit.Persistence.Configurations
                 .Metadata
                 .FindNavigation(nameof(Vehicle.VehiclePictures));
             navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
-
+            
             builder.HasIndex(e => e.Name);
         }
     }

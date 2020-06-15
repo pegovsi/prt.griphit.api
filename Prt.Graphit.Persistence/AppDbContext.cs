@@ -22,6 +22,8 @@ using System.Threading.Tasks;
 using Unit = Prt.Graphit.Domain.AggregatesModel.Sku.Entities.Unit;
 using Prt.Graphit.Application.Common.Extensions;
 using Prt.Graphit.Domain.AggregatesModel.UserMasterData.Entities;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Prt.Graphit.Domain.Views;
 
 namespace Prt.Graphit.Persistence
 {
@@ -84,10 +86,25 @@ namespace Prt.Graphit.Persistence
         public DbSet<UserMasterDataValue> UserMasterDataValues { get; set; }
 
         public DbContext DbContext => this;
+        public System.Data.Common.DbConnection DbConnection => this.Database.GetDbConnection();
+
+        public DbSet<UserMasterDataFieldView> UserMasterDataFieldView { get; set; }
+
+
+        public async Task<int> ExecuteSqlRawAsync(string sql, CancellationToken token = default)
+        {
+            return await base.Database.ExecuteSqlRawAsync(sql, token);
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+            modelBuilder
+                .Entity<UserMasterDataFieldView>()
+                .ToView(Domain.Views.UserMasterDataFieldView.View)
+                .HasNoKey();
+
+            modelBuilder
+                .ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
