@@ -65,6 +65,7 @@ namespace Prt.Graphit.Application.Common.MapperProfiles
 
             //UserMasterDataDto
             CreateMap<Domain.AggregatesModel.UserMasterData.Entities.TypeUserMasterData, TypeUserMasterDataDto>();
+            CreateMap<Domain.AggregatesModel.UserMasterData.Entities.UserMasterDataContent, UserMasterDataContentDto>();
             CreateMap<Domain.AggregatesModel.UserMasterData.Entities.UserMasterDataValue, UserMasterDataValueDto>();
             CreateMap<Domain.AggregatesModel.UserMasterData.Entities.UserMasterDataField, UserMasterDataFieldDto>();
             CreateMap<Domain.AggregatesModel.UserMasterData.Entities.UserMasterData, UserMasterDataDto>();

@@ -39,7 +39,7 @@ namespace Prt.Graphit.Application.Vehicle.Queries.GetVehicleById
                 .Include(x => x.Brigade)
                 .Include(x => x.Condition)
                 .Include(x => x.VehiclePictures)
-                .Include(x=>x.UserMasterDataValue)
+                .Include(x=>x.UserMasterDataValues)
                 .SingleOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
             var userMasterDataWithFields = await _appDbContext

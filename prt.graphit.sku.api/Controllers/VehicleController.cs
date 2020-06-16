@@ -16,6 +16,7 @@ using Prt.Graphit.Application.Vehicle.Queries.SearchVehicleByName;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Prt.Graphit.Application.Vehicle.Commands.Update;
 
 namespace Prt.Graphit.Api.Controllers
 {
@@ -74,5 +75,10 @@ namespace Prt.Graphit.Api.Controllers
         [HttpGet, Route("report-by-city")]
         public async Task<VehiclesCountByCityDto> GetVehiclesByCity()
             => await Mediator.Send(new GetVehiclesReportByCityQuery());
+
+        [HttpPut]
+        public async Task<Result<Guid>> UpdateVehicle
+            ([FromBody] UpdateVehicleCommand command, CancellationToken token)
+            => await Mediator.Send(command, token);
     }
 }

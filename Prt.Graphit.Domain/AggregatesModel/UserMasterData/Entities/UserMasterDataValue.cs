@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Prt.Graphit.Domain.Common;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Prt.Graphit.Domain.AggregatesModel.UserMasterData.Entities
 {
@@ -17,12 +15,16 @@ namespace Prt.Graphit.Domain.AggregatesModel.UserMasterData.Entities
 
         }
         public UserMasterDataValue(Guid userMasterDataId,
-            Guid userMasterDataFieldId, 
+            Guid userMasterDataFieldId,
+            Guid vehicleId,
             UserMasterDataContent content)
+            :this()
         {
             Id = Guid.NewGuid();
+            IsNew = true;
             UserMasterDataId = userMasterDataId;
             UserMasterDataFieldId = userMasterDataFieldId;
+            VehicleId = vehicleId;
             _content = JsonConvert.SerializeObject(content);
         }
         /// <summary>
@@ -49,6 +51,11 @@ namespace Prt.Graphit.Domain.AggregatesModel.UserMasterData.Entities
         private string _content;
         public UserMasterDataContent Content 
             => JsonConvert.DeserializeObject<UserMasterDataContent>(_content);
+
+        public void SetContent(UserMasterDataContent content)
+        {
+            _content = JsonConvert.SerializeObject(content);
+        }
     }
 
     public class UserMasterDataContent 

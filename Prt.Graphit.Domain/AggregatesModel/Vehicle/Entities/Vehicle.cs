@@ -2,6 +2,7 @@
 using Prt.Graphit.Domain.Common;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
 {
@@ -10,6 +11,7 @@ namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
         protected Vehicle() 
         {
             _vehiclePictures = new List<VehiclePicture>();
+            _userMasterDataValues = new List<UserMasterDataValue>();
         }
 
         public Vehicle(string name)
@@ -119,7 +121,8 @@ namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
         public DateTime ReadoutDate { get; private set; }
         public DateTime StartupDate { get; private set; }
 
-        public IEnumerable<UserMasterDataValue> UserMasterDataValue { get; private set; }
+        private List<UserMasterDataValue> _userMasterDataValues;
+        public IReadOnlyCollection<UserMasterDataValue> UserMasterDataValues => _userMasterDataValues;
 
         private List<VehiclePicture> _vehiclePictures;
         public IReadOnlyCollection<VehiclePicture> VehiclePictures=> _vehiclePictures;
@@ -127,6 +130,36 @@ namespace Prt.Graphit.Domain.AggregatesModel.Vehicle.Entities
         public void AddPicture(string uri, string uriPreview)
         {
             _vehiclePictures.Add(new VehiclePicture(this.Id, uri, uriPreview));
+        }
+
+        public void SetFactoryNumber(string factoryNumber) => 
+            VehicleNomberFactory = factoryNumber;
+
+        public void SetChassis(string сhassis) =>
+            VehicleNomberChassis = сhassis;
+
+        public void ClearUserMasterDataValues() => _userMasterDataValues.Clear();
+        public void AddUserMasterDataValue(Guid userMasterDataId, Guid userMasterDataFieldId, Guid vehicleId, dynamic value)
+        {
+            var values = _userMasterDataValues
+                .FirstOrDefault(x => x.UserMasterDataFieldId == userMasterDataFieldId);
+            if (values is null)
+            {
+                var content = new UserMasterDataContent
+                {
+                    Value = value
+                };
+                var newValue = new UserMasterDataValue(userMasterDataId, userMasterDataFieldId, vehicleId, content);
+                _userMasterDataValues.Add(newValue);   
+            }
+            else
+            {
+                var content = new UserMasterDataContent
+                {
+                    Value = value
+                };
+                values.SetContent(content);
+            }
         }
     }
 }
