@@ -64,7 +64,7 @@ namespace Prt.Graphit.Api.Controllers
         }
 
         [HttpGet, Route("select")]
-        public async Task<VehicleShortDto[]> GetForSeleced()
+        public async Task<VehicleShortDto[]> GetForChoose()
             => await Mediator.Send(new GetAllVehicleForSelectQuery());
 
         [HttpGet, Route("condition")]
