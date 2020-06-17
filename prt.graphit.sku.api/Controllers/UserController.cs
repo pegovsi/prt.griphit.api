@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Prt.Graphit.Api.Common.Api;
 using Prt.Graphit.Application.Common.Paging;
+using Prt.Graphit.Application.Users.Queries.GetAllUsers;
 using Prt.Graphit.Application.Users.Queries.GetUsersPage;
 using Prt.Graphit.Application.Users.Queries.Models;
 
@@ -18,6 +19,9 @@ namespace Prt.Graphit.Api.Controllers
         public async Task<ActionResult<UserCollectionViewModel>> GetPage(
             [FromBody] PageContext<UsersPageFilter> context, CancellationToken token)
             => await Mediator.Send(new GetUsersPageQuery(context), token);
-        
+     
+        [HttpGet]
+        public async Task<UserDto[]> GetAll(CancellationToken token)
+            => await Mediator.Send(new GetAllUsersQuery(), token);
     }
 }

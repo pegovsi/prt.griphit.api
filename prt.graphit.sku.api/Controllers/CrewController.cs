@@ -9,6 +9,7 @@ using Prt.Graphit.Application.Crew.Queries.Models;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Prt.Graphit.Application.Crew.Queries.GetCrewByVehicleId;
 
 namespace Prt.Graphit.Api.Controllers
 {
@@ -26,5 +27,9 @@ namespace Prt.Graphit.Api.Controllers
         public async Task<Result<Guid>> Add(
            [FromBody] AddCrewCommand command, CancellationToken token)
            => await Mediator.Send(command, token);
+
+        [HttpGet, Route("vehicle/{id}")]
+        public async Task<CrewDto[]> GetByVehicle(Guid id)
+            => await Mediator.Send(new GetCrewByVehicleIdQuery(id));
     }
 }

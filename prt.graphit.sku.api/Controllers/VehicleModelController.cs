@@ -11,6 +11,7 @@ using Prt.Graphit.Application.VehicleModel.Queries.Models;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Prt.Graphit.Application.VehicleModel.Queries.GetVehicleModelPositionsByVehicleId;
 
 namespace Prt.Graphit.Api.Controllers
 {
@@ -37,5 +38,9 @@ namespace Prt.Graphit.Api.Controllers
         public async Task<VehicleModelCollectionViewModel> GetPage(
             [FromBody] PageContext<VehicleModelPageFilter> context, CancellationToken token)
             => await Mediator.Send(new GetVehicleModelPageQuery(context), token);
+
+        [HttpGet, Route("positions/{id}")]
+        public async Task<VehicleModelPositionDto[]> GetPositionByVehicle(Guid id)
+            => await Mediator.Send(new GetVehicleModelPositionsByVehicleIdQuery(id));
     }
 }
