@@ -18,7 +18,7 @@ jobs:
       with:
         dotnet-version: 3.1.101        
     - name: catalog current
-    - run: echo type -a pwd
+      run: echo type -a pwd
     - name: Install dependencies
       working-directory : /prt.graphit.sku.api/prt.griphit.api
       run: dotnet restore
