@@ -19,7 +19,7 @@ jobs:
       with:
         dotnet-version: 3.1.101
         working-directory : ${{env.working-directory}}
-    - name: catalog
+    - name: catalog current
     - run: type -a pwd
     - name: Install dependencies    
       run: dotnet restore
