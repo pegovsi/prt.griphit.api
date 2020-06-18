@@ -17,13 +17,15 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.101
-        working-directory : ${{env.working-directory}}
+        dotnet-version: 3.1.101        
     - name: catalog current
-    - run: type -a pwd
-    - name: Install dependencies    
+    - run: echo type -a pwd
+    - name: Install dependencies
+      working-directory : ${{env.working-directory}}
       run: dotnet restore
     - name: Build
+      working-directory : ${{env.working-directory}}
       run: dotnet build --configuration Release --no-restore
     - name: Test
+      working-directory : ${{env.working-directory}}
       run: dotnet test --no-restore --verbosity normal
