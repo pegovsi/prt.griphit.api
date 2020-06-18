@@ -20,11 +20,11 @@ jobs:
     - name: catalog current
       run: type -a pwd
     - name: Install dependencies
-      working-directory : ./prt.graphit.sku.api/prt.griphit.api
+      working-directory : ./prt.griphit.api/prt.graphit.sku.api
       run: dotnet restore
     - name: Build
-      working-directory : ./prt.graphit.sku.api/prt.griphit.api
+      working-directory : ./prt.griphit.api/prt.graphit.sku.api
       run: dotnet build --configuration Release --no-restore
     - name: Test
-      working-directory : ./prt.graphit.sku.api/prt.griphit.api
+      working-directory : ./prt.griphit.api/prt.graphit.sku.api
       run: dotnet test --no-restore --verbosity normal
