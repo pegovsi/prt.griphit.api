@@ -11,8 +11,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      working-directory: /prt.graphit.sku.api/
-
+      working-directory: /prt.graphit.sku.api/prt.griphit.api
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
@@ -20,7 +19,9 @@ jobs:
       with:
         dotnet-version: 3.1.101
         working-directory : ${{env.working-directory}}
-    - name: Install dependencies
+    - name: catalog
+    - run: type -a pwd
+    - name: Install dependencies    
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release --no-restore
