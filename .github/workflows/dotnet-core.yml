@@ -18,13 +18,13 @@ jobs:
       with:
         dotnet-version: 3.1.101        
     - name: catalog current
-      run: echo type -a pwd
+      run: type -a pwd
     - name: Install dependencies
-      working-directory : /prt.graphit.sku.api/prt.griphit.api
+      working-directory : ./prt.graphit.sku.api/prt.griphit.api
       run: dotnet restore
     - name: Build
-      working-directory : /prt.graphit.sku.api/prt.griphit.api
+      working-directory : ./prt.graphit.sku.api/prt.griphit.api
       run: dotnet build --configuration Release --no-restore
     - name: Test
-      working-directory : /prt.graphit.sku.api/prt.griphit.api
+      working-directory : ./prt.graphit.sku.api/prt.griphit.api
       run: dotnet test --no-restore --verbosity normal
