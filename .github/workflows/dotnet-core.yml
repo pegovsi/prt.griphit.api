@@ -16,15 +16,10 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.101        
-    - name: catalog current
-      run: type -a pwd
+        dotnet-version: 3.1.101
     - name: Install dependencies
       working-directory : ./prt.graphit.sku.api
       run: dotnet restore
     - name: Build
-      working-directory : ./prt.griphit.api/prt.graphit.sku.api
+      working-directory : ./prt.graphit.sku.api
       run: dotnet build --configuration Release --no-restore
-    - name: Test
-      working-directory : ./prt.griphit.api/prt.graphit.sku.api
-      run: dotnet test --no-restore --verbosity normal
