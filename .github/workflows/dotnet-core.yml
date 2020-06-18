@@ -10,8 +10,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    env:
-      working-directory: /prt.graphit.sku.api/prt.griphit.api
+    
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
@@ -21,11 +20,11 @@ jobs:
     - name: catalog current
     - run: echo type -a pwd
     - name: Install dependencies
-      working-directory : ${{env.working-directory}}
+      working-directory : /prt.graphit.sku.api/prt.griphit.api
       run: dotnet restore
     - name: Build
-      working-directory : ${{env.working-directory}}
+      working-directory : /prt.graphit.sku.api/prt.griphit.api
       run: dotnet build --configuration Release --no-restore
     - name: Test
-      working-directory : ${{env.working-directory}}
+      working-directory : /prt.graphit.sku.api/prt.griphit.api
       run: dotnet test --no-restore --verbosity normal
